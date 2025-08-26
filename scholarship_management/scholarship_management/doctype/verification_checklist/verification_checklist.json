@@ -1,0 +1,87 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:application",
+ "creation": "2025-08-20 16:37:43.518970",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "application",
+  "verified_by",
+  "column_break_acra",
+  "all_documents_valid",
+  "verification_date",
+  "section_break_qzzi",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "application",
+   "fieldtype": "Link",
+   "label": "Application",
+   "options": "Scholarship Application",
+   "unique": 1
+  },
+  {
+   "fieldname": "verified_by",
+   "fieldtype": "Link",
+   "label": "Verified By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_acra",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "all_documents_valid",
+   "fieldtype": "Check",
+   "label": "All Documents Valid"
+  },
+  {
+   "fieldname": "verification_date",
+   "fieldtype": "Date",
+   "label": "Verification Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_qzzi",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Text Editor",
+   "label": "Remarks"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-08-20 17:24:35.649746",
+ "modified_by": "Administrator",
+ "module": "Scholarship Management",
+ "name": "Verification Checklist",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "application"
+}

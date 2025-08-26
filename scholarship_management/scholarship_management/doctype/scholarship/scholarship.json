@@ -1,0 +1,165 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:name1",
+ "creation": "2025-08-05 13:28:30.753155",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "scholarship_type",
+  "start_date",
+  "end_date",
+  "max_applicants_allowed",
+  "column_break_ctlw",
+  "name1",
+  "total_amount",
+  "status",
+  "created_by",
+  "eligibility_criteria_section",
+  "cgpa",
+  "eleventh_mark",
+  "caste",
+  "column_break_zhoz",
+  "income",
+  "tenth_mark",
+  "twelfth_mark"
+ ],
+ "fields": [
+  {
+   "fieldname": "name1",
+   "fieldtype": "Data",
+   "in_standard_filter": 1,
+   "label": "Scholarship Name",
+   "unique": 1
+  },
+  {
+   "fieldname": "max_applicants_allowed",
+   "fieldtype": "Int",
+   "label": "Max Applicants Allowed",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date",
+   "reqd": 1
+  },
+  {
+   "depends_on": "start_date",
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "\nActive\nClosed",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total Amount"
+  },
+  {
+   "fieldname": "created_by",
+   "fieldtype": "Data",
+   "label": "Created by",
+   "read_only": 1
+  },
+  {
+   "fieldname": "scholarship_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Scholarship Type",
+   "options": "\nSchool-Level\nUndergraduate",
+   "placeholder": "---select scholarship type----"
+  },
+  {
+   "fieldname": "eligibility_criteria_section",
+   "fieldtype": "Section Break",
+   "label": "Eligibility Criteria"
+  },
+  {
+   "fieldname": "cgpa",
+   "fieldtype": "Float",
+   "label": "CGPA"
+  },
+  {
+   "fieldname": "column_break_zhoz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "income",
+   "fieldtype": "Currency",
+   "label": "Income"
+  },
+  {
+   "fieldname": "caste",
+   "fieldtype": "Table MultiSelect",
+   "label": "Caste",
+   "options": "Test"
+  },
+  {
+   "fieldname": "column_break_ctlw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tenth_mark",
+   "fieldtype": "Percent",
+   "label": "10th Mark"
+  },
+  {
+   "fieldname": "eleventh_mark",
+   "fieldtype": "Percent",
+   "label": "11th Mark"
+  },
+  {
+   "fieldname": "twelfth_mark",
+   "fieldtype": "Percent",
+   "label": "12th Mark"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-08-26 16:58:56.725322",
+ "modified_by": "Administrator",
+ "module": "Scholarship Management",
+ "name": "Scholarship",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Student",
+   "select": 1,
+   "share": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

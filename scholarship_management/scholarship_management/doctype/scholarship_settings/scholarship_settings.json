@@ -1,0 +1,74 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-08-25 16:20:48.280743",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "scholarship_name",
+  "column_break_bjnr",
+  "send_email_approval",
+  "send_email_renewal",
+  "section_break_kiwz",
+  "caste_allocate"
+ ],
+ "fields": [
+  {
+   "fieldname": "scholarship_name",
+   "fieldtype": "Table MultiSelect",
+   "label": "Scholarship Name",
+   "options": "Setting test"
+  },
+  {
+   "fieldname": "caste_allocate",
+   "fieldtype": "Table",
+   "label": "Caste Allocate",
+   "options": "Caste Percentage"
+  },
+  {
+   "default": "0",
+   "fieldname": "send_email_approval",
+   "fieldtype": "Check",
+   "label": "Send Email Approval"
+  },
+  {
+   "default": "0",
+   "fieldname": "send_email_renewal",
+   "fieldtype": "Check",
+   "label": "Send Email Renewal"
+  },
+  {
+   "fieldname": "column_break_bjnr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_kiwz",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2025-08-25 19:08:56.177389",
+ "modified_by": "Administrator",
+ "module": "Scholarship Management",
+ "name": "Scholarship Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

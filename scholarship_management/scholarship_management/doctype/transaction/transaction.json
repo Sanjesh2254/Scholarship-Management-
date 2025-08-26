@@ -1,0 +1,85 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-08-20 19:58:00.823075",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "scholarship",
+  "payment_id",
+  "paid_amount",
+  "column_break_qdbk",
+  "applicant",
+  "transaction_type",
+  "transaction_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "applicant",
+   "fieldtype": "Data",
+   "label": "Applicant",
+   "read_only": 1
+  },
+  {
+   "fieldname": "scholarship",
+   "fieldtype": "Data",
+   "label": "Scholarship",
+   "read_only": 1
+  },
+  {
+   "fieldname": "payment_id",
+   "fieldtype": "Data",
+   "label": "Payment Id",
+   "read_only": 1
+  },
+  {
+   "fieldname": "paid_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Paid Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_qdbk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "transaction_type",
+   "fieldtype": "Select",
+   "label": "Scholarship Type",
+   "options": "\nNormal\nRenewal",
+   "read_only": 1
+  },
+  {
+   "fieldname": "transaction_date",
+   "fieldtype": "Date",
+   "label": "Transaction Date"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-08-26 15:46:07.006580",
+ "modified_by": "Administrator",
+ "module": "Scholarship Management",
+ "name": "Transaction",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

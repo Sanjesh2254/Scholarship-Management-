@@ -1,0 +1,46 @@
+{
+ "cards": [
+  {
+   "card": "Total Scholarship"
+  },
+  {
+   "card": "Application Count"
+  },
+  {
+   "card": "Scholarship Renewal"
+  },
+  {
+   "card": "Total Transaction Amount"
+  }
+ ],
+ "charts": [
+  {
+   "chart": "Transaction",
+   "width": "Half"
+  },
+  {
+   "chart": "Scholarship Application",
+   "width": "Half"
+  },
+  {
+   "chart": "Scholarship Renewal",
+   "width": "Half"
+  },
+  {
+   "chart": "Total User",
+   "width": "Half"
+  }
+ ],
+ "creation": "2025-08-26 10:55:27.527741",
+ "dashboard_name": "Admin",
+ "docstatus": 0,
+ "doctype": "Dashboard",
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "modified": "2025-08-26 15:52:37.917855",
+ "modified_by": "Administrator",
+ "module": "Scholarship Management",
+ "name": "Admin",
+ "owner": "Administrator"
+}

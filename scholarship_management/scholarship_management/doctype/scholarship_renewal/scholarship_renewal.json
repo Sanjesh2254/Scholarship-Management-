@@ -1,0 +1,149 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "Renewal Id-.####",
+ "creation": "2025-08-22 17:07:08.327074",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_dcm2",
+  "scholarship_name",
+  "status",
+  "amended_from",
+  "column_break_eerx",
+  "applicant",
+  "renewal_date",
+  "section_break_ynrg",
+  "community_certificate",
+  "tenth_marksheet",
+  "twelfth_marksheet",
+  "tamil_medium_certificate",
+  "column_break_cikl",
+  "income_certificate",
+  "eleventh_marksheet",
+  "previous_semester_marksheet",
+  "passbook"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_dcm2",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Scholarship Renewal",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "scholarship_name",
+   "fieldtype": "Link",
+   "label": "Scholarship Name",
+   "options": "Scholarship Application"
+  },
+  {
+   "fieldname": "renewal_date",
+   "fieldtype": "Date",
+   "label": "Renewal Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "\nPending Verification\nRejected\nApproved\nPending Finance Department Approved\nRejected by Scholarship Committee\nhii\nPending Scholarship Committee Approved\nRejected by Document Verifier\nApplied\nPaid\nVerified",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_ynrg",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "community_certificate",
+   "fieldtype": "Attach",
+   "label": "Community Certificate"
+  },
+  {
+   "fieldname": "income_certificate",
+   "fieldtype": "Attach",
+   "label": "Income Certificate"
+  },
+  {
+   "fieldname": "previous_semester_marksheet",
+   "fieldtype": "Attach",
+   "label": "Previous Semester Marksheet"
+  },
+  {
+   "fieldname": "tamil_medium_certificate",
+   "fieldtype": "Attach",
+   "label": "Tamil Medium Certificate"
+  },
+  {
+   "fieldname": "passbook",
+   "fieldtype": "Attach",
+   "label": "Passbook"
+  },
+  {
+   "fieldname": "column_break_eerx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_cikl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "applicant",
+   "fieldtype": "Link",
+   "label": "Applicant",
+   "options": "Applicant Profile"
+  },
+  {
+   "fieldname": "tenth_marksheet",
+   "fieldtype": "Attach",
+   "label": "10th Marksheet"
+  },
+  {
+   "fieldname": "twelfth_marksheet",
+   "fieldtype": "Attach",
+   "label": "12th Marksheet"
+  },
+  {
+   "fieldname": "eleventh_marksheet",
+   "fieldtype": "Attach",
+   "label": "11th Marksheet"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-08-25 13:22:21.653175",
+ "modified_by": "Administrator",
+ "module": "Scholarship Management",
+ "name": "Scholarship Renewal",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

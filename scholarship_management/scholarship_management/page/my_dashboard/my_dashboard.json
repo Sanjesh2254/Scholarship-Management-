@@ -1,0 +1,24 @@
+{
+ "content": null,
+ "creation": "2025-08-26 12:36:31.631735",
+ "docstatus": 0,
+ "doctype": "Page",
+ "icon": "\ud83c\udfc6",
+ "idx": 0,
+ "modified": "2025-08-26 12:36:41.662302",
+ "modified_by": "Administrator",
+ "module": "Scholarship Management",
+ "name": "my-dashboard",
+ "owner": "Administrator",
+ "page_name": "my-dashboard",
+ "roles": [
+  {
+   "role": "Student"
+  }
+ ],
+ "script": null,
+ "standard": "Yes",
+ "style": null,
+ "system_page": 0,
+ "title": "My Dashboard"
+}

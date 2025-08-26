@@ -1,0 +1,54 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h3 class="mb-4 text-center">Create Your Account</h3>
+
+          <form method="post">
+            <div class="mb-3">
+              <label for="full_name" class="form-label">Full Name</label>
+              <input type="text" class="form-control" name="full_name" value="{{ entered_full_name or '' }}" id="full_name" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input type="email" class="form-control"  name="email" value="{{ entered_email or '' }}" id="email" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" name="password" id="password" required>
+            </div>
+
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Sign Up</button>
+            </div>
+          </form>
+         
+          {% if signup_success %}
+            <div class="alert alert-success mt-3">
+              Account created successfully!
+            </div>
+            <script>
+              setTimeout(function() {
+                window.location.href = "/app/applicant-profile/new";
+              }, 1000);
+            </script>
+          {% elif error_message %}
+            <div class="alert alert-danger mt-3">
+              {{ error_message }}
+            </div>
+          {% endif %}
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

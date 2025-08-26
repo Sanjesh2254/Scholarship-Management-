@@ -242,3 +242,22 @@ app_license = "mit"
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+
+permission_query_conditions = {
+    "Scholarship": "scholarship_management.scholarship_management.doctype.scholarship.scholarship.get_permission_query_conditions",
+    "Applicant Profile":"scholarship_management.scholarship_management.doctype.applicant_profile.applicant_profile.get_permission_query_conditions",
+    "Scholarship Application":"scholarship_management.scholarship_management.doctype.scholarship_application.scholarship_application.get_permission_query_conditions",
+    "Scholarship Renewal":"scholarship_management.scholarship_management.doctype.scholarship_renewal.scholarship_renewal.get_permission_query_conditions",
+
+}
+
+app_include_js =[ "/assets/scholarship_management/js/chat17.js",
+"/assets/scholarship_management/js/students.js",
+
+# "https://checkout.razorpay.com/v1/approval.js"
+]
+
+doctype_list_js = {
+    "*": "public/js/custom_listview.js"
+}
+

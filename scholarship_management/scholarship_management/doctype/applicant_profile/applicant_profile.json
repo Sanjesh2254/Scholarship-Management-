@@ -1,0 +1,346 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": " Applicant Id-.####",
+ "creation": "2025-08-09 13:57:06.930165",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "name1",
+  "dob",
+  "age",
+  "is_school",
+  "column_break_tpyp",
+  "email",
+  "aadhaar_number",
+  "phone_number",
+  "college",
+  "column_break_kfry",
+  "address",
+  "update_date",
+  "section_break_bozd",
+  "school_name",
+  "tenth_marksheet",
+  "eleventh_marksheet",
+  "twelfth_marksheet",
+  "tamil_medium",
+  "column_break_jwve",
+  "class",
+  "tenth_mark",
+  "eleventh_mark",
+  "twelfth_mark",
+  "tamil_medium_certificate",
+  "section_break_sauk",
+  "college_name",
+  "year",
+  "previous_semester_marksheet",
+  "tenthmarksheet",
+  "eleventhmarksheet",
+  "twelfthmarksheet",
+  "column_break_brwm",
+  "department",
+  "semester",
+  "previous_semester_total",
+  "tenth_total",
+  "eleventh_total",
+  "twelfth_total",
+  "documents_section",
+  "community_certificate",
+  "caste",
+  "column_break_rhnl",
+  "income_certificate",
+  "income",
+  "column_break_ivwk",
+  "passbook"
+ ],
+ "fields": [
+  {
+   "fieldname": "name1",
+   "fieldtype": "Data",
+   "label": "Name"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email",
+   "read_only": 1
+  },
+  {
+   "fieldname": "dob",
+   "fieldtype": "Date",
+   "label": "D.O.B"
+  },
+  {
+   "depends_on": "dob",
+   "fieldname": "age",
+   "fieldtype": "Int",
+   "label": "Age",
+   "read_only": 1
+  },
+  {
+   "fieldname": "phone_number",
+   "fieldtype": "Phone",
+   "label": "Phone Number"
+  },
+  {
+   "fieldname": "aadhaar_number",
+   "fieldtype": "Data",
+   "label": "Aadhaar Number"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
+  },
+  {
+   "default": "0",
+   "fieldname": "college",
+   "fieldtype": "Check",
+   "label": "College"
+  },
+  {
+   "fieldname": "column_break_tpyp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_kfry",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "is_school",
+   "fieldname": "section_break_bozd",
+   "fieldtype": "Section Break",
+   "label": "School Details"
+  },
+  {
+   "depends_on": "college",
+   "fieldname": "section_break_sauk",
+   "fieldtype": "Section Break",
+   "label": "College Details"
+  },
+  {
+   "fieldname": "update_date",
+   "fieldtype": "Date",
+   "label": "Update Date"
+  },
+  {
+   "fieldname": "documents_section",
+   "fieldtype": "Section Break",
+   "label": "Documents"
+  },
+  {
+   "depends_on": "community_certificate",
+   "fieldname": "caste",
+   "fieldtype": "Data",
+   "label": "Caste",
+   "read_only": 1
+  },
+  {
+   "fieldname": "community_certificate",
+   "fieldtype": "Attach",
+   "label": "Community Certificate"
+  },
+  {
+   "fieldname": "column_break_rhnl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "income_certificate",
+   "fieldtype": "Attach",
+   "label": "Income Certificate"
+  },
+  {
+   "fieldname": "passbook",
+   "fieldtype": "Attach",
+   "label": "Passbook"
+  },
+  {
+   "fieldname": "school_name",
+   "fieldtype": "Data",
+   "label": "School Name"
+  },
+  {
+   "default": "0",
+   "fieldname": "tamil_medium",
+   "fieldtype": "Check",
+   "label": "Tamil Medium"
+  },
+  {
+   "depends_on": "tamil_medium",
+   "fieldname": "tamil_medium_certificate",
+   "fieldtype": "Attach",
+   "label": "Tamil Medium Certificate"
+  },
+  {
+   "fieldname": "column_break_jwve",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "college_name",
+   "fieldtype": "Data",
+   "label": "College Name"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Data",
+   "label": "Department"
+  },
+  {
+   "fieldname": "year",
+   "fieldtype": "Select",
+   "label": "Year",
+   "options": "\n1st Year\n2nd Year\n3rd Year\n4th Year\n5th Year\n6th Year"
+  },
+  {
+   "fieldname": "previous_semester_marksheet",
+   "fieldtype": "Attach",
+   "label": "Previous Semester Marksheet"
+  },
+  {
+   "fieldname": "column_break_brwm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "class",
+   "fieldtype": "Select",
+   "label": "Class",
+   "options": "\n10\n11\n12"
+  },
+  {
+   "depends_on": "income_certificate",
+   "fieldname": "income",
+   "fieldtype": "Currency",
+   "label": "Income",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_school",
+   "fieldtype": "Check",
+   "label": "School"
+  },
+  {
+   "fieldname": "tenth_marksheet",
+   "fieldtype": "Attach",
+   "hidden": 1,
+   "label": "10th Marksheet"
+  },
+  {
+   "fieldname": "eleventh_marksheet",
+   "fieldtype": "Attach",
+   "hidden": 1,
+   "label": "11th Marksheet"
+  },
+  {
+   "fieldname": "twelfth_marksheet",
+   "fieldtype": "Attach",
+   "hidden": 1,
+   "label": "12th Marksheet"
+  },
+  {
+   "fieldname": "twelfthmarksheet",
+   "fieldtype": "Attach",
+   "label": "12th Marksheet"
+  },
+  {
+   "fieldname": "eleventhmarksheet",
+   "fieldtype": "Attach",
+   "label": "11th Marksheet"
+  },
+  {
+   "fieldname": "tenthmarksheet",
+   "fieldtype": "Attach",
+   "label": "10th Marksheet"
+  },
+  {
+   "depends_on": "tenth_marksheet",
+   "fieldname": "tenth_mark",
+   "fieldtype": "Int",
+   "label": "10th Mark",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eleventh_marksheet",
+   "fieldname": "eleventh_mark",
+   "fieldtype": "Int",
+   "label": "11th Mark",
+   "read_only": 1
+  },
+  {
+   "depends_on": "twelfth_marksheet",
+   "fieldname": "twelfth_mark",
+   "fieldtype": "Int",
+   "label": "12th Mark",
+   "read_only": 1,
+   "read_only_depends_on": "suma"
+  },
+  {
+   "depends_on": "twelfthmarksheet",
+   "fieldname": "twelfth_total",
+   "fieldtype": "Data",
+   "label": "twelfth_total",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eleventhmarksheet",
+   "fieldname": "eleventh_total",
+   "fieldtype": "Data",
+   "label": "eleventh_total",
+   "read_only": 1
+  },
+  {
+   "depends_on": "tenthmarksheet",
+   "fieldname": "tenth_total",
+   "fieldtype": "Data",
+   "label": "tenth_total",
+   "read_only": 1
+  },
+  {
+   "depends_on": "previous_semester_marksheet",
+   "fieldname": "previous_semester_total",
+   "fieldtype": "Data",
+   "label": "CPGA",
+   "read_only": 1
+  },
+  {
+   "fieldname": "semester",
+   "fieldtype": "Select",
+   "label": "Semester",
+   "options": "\n1st Semester\n2nd Semester\n3rd Semester\n4th Semester\n5th Semester\n6th Semester\n7th Semester\n8th Semester"
+  },
+  {
+   "fieldname": "column_break_ivwk",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-08-23 15:11:35.882602",
+ "modified_by": "Administrator",
+ "module": "Scholarship Management",
+ "name": "Applicant Profile",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "name1"
+}

@@ -1,0 +1,79 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-08-20 17:17:27.348152",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "verified_application",
+  "status",
+  "approved_date",
+  "column_break_cees",
+  "applicant",
+  "approved_by"
+ ],
+ "fields": [
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "\nApproved\nRejected"
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Link",
+   "label": "Approved By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "approved_date",
+   "fieldtype": "Date",
+   "label": "Approved Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_cees",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "verified_application",
+   "fieldtype": "Link",
+   "label": "Verified Application",
+   "options": "Verification Checklist"
+  },
+  {
+   "depends_on": "verified_application",
+   "fieldname": "applicant",
+   "fieldtype": "Link",
+   "label": "Applicant",
+   "options": "Scholarship Application"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-08-20 18:26:05.782967",
+ "modified_by": "Administrator",
+ "module": "Scholarship Management",
+ "name": "Approval",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
