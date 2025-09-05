@@ -9,6 +9,8 @@
 
 frappe.ui.form.on('Scholarship Renewal', {
   refresh: function(frm) {
+        frm.$wrapper.find(".form-section .form-group label").css("color", "#10b035ff");
+
     
         frm.set_query("scholarship_name", () => {
             return {

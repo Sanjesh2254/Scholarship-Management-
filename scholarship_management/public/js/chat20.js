@@ -5,13 +5,41 @@ frappe.after_ajax(function () {
     let chatbotWrapper = document.createElement("div");
     chatbotWrapper.id = "frappe-chatbot-widget";
     chatbotWrapper.innerHTML = `
+        <style>
+            /* WhatsApp style typing dots */
+            #chatbot-loading {
+                display: flex;
+                gap: 4px;
+                align-items: center;
+                margin-bottom: 8px;
+            }
+            #chatbot-loading .dot {
+                width: 8px;
+                height: 8px;
+                background: #999;
+                border-radius: 50%;
+                display: inline-block;
+                animation: bounce 1.2s infinite;
+            }
+            #chatbot-loading .dot:nth-child(2) {
+                animation-delay: 0.2s;
+            }
+            #chatbot-loading .dot:nth-child(3) {
+                animation-delay: 0.4s;
+            }
+            @keyframes bounce {
+                0%, 80%, 100% { transform: scale(0.6); opacity: 0.5; }
+                40% { transform: scale(1); opacity: 1; }
+            }
+        </style>
+
         <!-- Tooltip / Initial Message -->
         <div id="chatbot-tooltip" style="
-            display: block; /* show by default */
+            display: block;
             position: fixed;
             bottom: 85px;
             right: 20px;
-            background: #4A90E2;
+            background: #4CAF50;
             color: white;
             padding: 10px 14px;
             border-radius: 10px;
@@ -29,7 +57,7 @@ frappe.after_ajax(function () {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: #4A90E2;
+            background: #4CAF50;
             color: white;
             width: 55px;
             height: 55px;
@@ -59,7 +87,7 @@ frappe.after_ajax(function () {
             flex-direction: column;
             font-family: system-ui, sans-serif;
         ">
-            <div style="background: #4A90E2; color: white; padding: 12px; font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+            <div style="background: #4CAF50; color: white; padding: 12px; font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
                 Scholarship Assistant
                 <span id="chatbot-close" style="cursor: pointer; font-size: 18px;">✖</span>
             </div>
@@ -70,7 +98,7 @@ frappe.after_ajax(function () {
             </div>
             <div style="padding: 10px; background: #fff; border-top: 1px solid #ddd; display: flex; gap: 8px;">
                 <input id="chatbot-input" type="text" placeholder="Type your message..." style="flex: 1; padding: 8px 10px; border: 1px solid #ccc; border-radius: 20px; outline: none;" />
-                <button id="chatbot-send" style="background: #4A90E2; color: white; border: none; padding: 8px 14px; border-radius: 20px; cursor: pointer; font-weight: bold;">➤</button>
+                <button id="chatbot-send" style="background: #4CAF50; color: white; border: none; padding: 8px 14px; border-radius: 20px; cursor: pointer; font-weight: bold;">➤</button>
             </div>
         </div>
     `;
@@ -87,7 +115,7 @@ frappe.after_ajax(function () {
 
     // Show chat window on toggle click and hide tooltip
     toggleBtn.onclick = () => {
-        tooltip.style.display = "none"; // hide the initial message
+        tooltip.style.display = "none";
         chatWindow.style.display = "flex";
         inputField.focus();
     };
@@ -119,7 +147,7 @@ frappe.after_ajax(function () {
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
     }
 
-    // Send message to server
+    // Send message to server with WhatsApp-style typing dots
     function sendMessage() {
         let msg = inputField.value.trim();
         if (!msg) return;
@@ -127,10 +155,26 @@ frappe.after_ajax(function () {
         addMessage(msg, "user");
         inputField.value = "";
 
+        // Show loading dots (WhatsApp style)
+        let loadingDiv = document.createElement("div");
+        loadingDiv.id = "chatbot-loading";
+        loadingDiv.innerHTML = `
+            <span style="background:#f0f0f0; padding:6px 10px; border-radius:15px; display:inline-flex; gap:4px; align-items:center;">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </span>`;
+        messagesDiv.appendChild(loadingDiv);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
         frappe.call({
             method: "scholarship_management.api.chatbot_reply",
             args: { message: msg },
             callback: function (r) {
+                // Remove loading indicator
+                let ld = document.getElementById("chatbot-loading");
+                if (ld) ld.remove();
+
                 if (Array.isArray(r.message)) {
                     r.message.forEach((line, index) => {
                         setTimeout(() => addMessage(line, "bot"), index * 500);

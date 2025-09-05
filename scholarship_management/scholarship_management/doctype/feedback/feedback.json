@@ -1,14 +1,15 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-08-20 19:00:31.171379",
+ "autoname": "feedback-.####",
+ "creation": "2025-09-01 17:22:37.810038",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "applicant_name",
-  "column_break_atbh",
+  "column_break_tgti",
   "scholarship_name",
-  "section_break_fwxw",
+  "section_break_zqaq",
   "feedback"
  ],
  "fields": [
@@ -19,17 +20,18 @@
    "options": "Applicant Profile"
   },
   {
-   "fieldname": "column_break_atbh",
+   "fieldname": "column_break_tgti",
    "fieldtype": "Column Break"
   },
   {
    "fieldname": "scholarship_name",
    "fieldtype": "Link",
    "label": "Scholarship Name",
-   "options": "Scholarship"
+   "options": "Scholarship",
+   "unique": 1
   },
   {
-   "fieldname": "section_break_fwxw",
+   "fieldname": "section_break_zqaq",
    "fieldtype": "Section Break"
   },
   {
@@ -41,10 +43,11 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-20 19:05:27.803911",
+ "modified": "2025-09-02 17:10:09.840947",
  "modified_by": "Administrator",
  "module": "Scholarship Management",
  "name": "Feedback",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

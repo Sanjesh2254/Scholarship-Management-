@@ -5,12 +5,7 @@ from frappe.utils import getdate
 
 class Scholarship(Document):
     def after_insert(self):
-        # Get all system users (exclude Guest / Administrator if you want)
-        users = frappe.get_all("User", filters={"enabled": 1}, pluck="email")
-
-        # Remove Administrator and Guest
-        users = [u for u in users if u not in ["Administrator", "Guest"]]
-
+        users = frappe.get_all("User", filters={"enabled": 1,"role":"Student"}, pluck="email")
         if users:
             subject = f"🎓 New Scholarship Created: {self.name1}"
             message = f"""
@@ -54,8 +49,8 @@ class Scholarship(Document):
 
         <div style="text-align:center; margin-top:20px;">
             <a href="{frappe.utils.get_url()}/app/scholarship/{self.name}" 
-               style="background:#2e7d32; color:white; padding:10px 20px; 
-                      text-decoration:none; border-radius:5px; font-weight:bold;">
+            style="background:#2e7d32; color:white; padding:10px 20px; 
+                text-decoration:none; border-radius:5px; font-weight:bold;">
                 View Scholarship
             </a>
         </div>
@@ -67,7 +62,8 @@ class Scholarship(Document):
 </div>
 """
 
-
+        send_email_new_scholarship=frappe.db.get_single_value("Scholarship Settings","send_email_new_scholarship")
+        if send_email_new_scholarship == 1:
             frappe.sendmail(
                 recipients=users,
                 subject=subject,
@@ -75,6 +71,8 @@ class Scholarship(Document):
                 now=True
             )
     def validate(self):
+        
+
         scholarship_name = self.name1
         max_applicants = frappe.db.count('Scholarship Application', {
             'scholarship_name': scholarship_name
@@ -86,11 +84,13 @@ class Scholarship(Document):
 
         if start_date <= current_date <= end_date and max_applicants < self.max_applicants_allowed:
             self.status = "Active"
+        elif current_date <= start_date:
+            self.status = "Upcoming"
         else:
             self.status = "Closed"
 
         self.created_by = frappe.session.user
-	
+
 
 
 
@@ -100,19 +100,16 @@ def get_applicant_name():
 	if not user_email:
 		frappe.throw("User email not found.")
 	applicant = frappe.db.get_value("Applicant Profile", {"email": user_email}, "name")
-	# if not applicant:
-	# 	frappe.throw("No Applicant Profile found for this user.")
-		
 	return applicant
 
 def get_permission_query_conditions(user):
-	user_email = frappe.db.get_value("User", frappe.session.user, "email")
-	if not user_email:
-		frappe.throw("User email not found.")
-	if "System Manager" in frappe.get_roles(user):
-		return None
-	elif "Student" in frappe.get_roles(user):
-		return "`tabScholarship`.`status` = 'Active'" 
+    user_email = frappe.db.get_value("User", frappe.session.user, "email")
+    if not user_email:
+        frappe.throw("User email not found.")
+    if "System Manager" in frappe.get_roles(user):
+        return None
+    elif "Student" in frappe.get_roles(user):
+        return "`tabScholarship`.`status` IN ('Active', 'Upcoming')"
 
 @frappe.whitelist()
 def eligibility_criteria(scholarship_name=None):
@@ -154,3 +151,53 @@ def eligibility_criteria(scholarship_name=None):
         return False
 
     return True
+@frappe.whitelist()
+def caste_allocated(total_applications,scholarship_name):
+    user = frappe.session.user
+    email = frappe.db.get_value("User", {"name": user}, "email")
+    caste_name = frappe.db.get_value("Applicant Profile", {"email": email}, "caste")
+
+    if not caste_name:
+        print("Caste not found → Returning True (block user).")
+        return True  
+
+    doc = frappe.get_doc("Scholarship Settings", "Scholarship Settings")
+    caste_distribution = {}
+    total_applications = int(total_applications)
+
+    total_allocated = 0
+    sc_key = None
+
+    for row in doc.caste_allocate:
+        caste_key = row.caste_name.strip().lower()
+        percentage = float(row.percentage or 0)
+        count = round(total_applications * percentage / 100)
+        caste_distribution[caste_key] = count
+        total_allocated += count
+
+        if caste_key == "sc":
+            sc_key = caste_key
+
+    if total_allocated != total_applications and sc_key:
+        remaining = total_applications - total_allocated
+        caste_distribution[sc_key] += remaining
+        print(f"Adjusted SC count by {remaining} to fix rounding mismatch.")
+
+    actual_data = frappe.db.sql("""
+    SELECT LOWER(TRIM(ap.caste)) AS caste, COUNT(sa.name) AS total_applications
+    FROM `tabScholarship Application` sa
+    JOIN `tabApplicant Profile` ap ON sa.applicant = ap.name
+    WHERE sa.scholarship_name = %s
+    GROUP BY caste
+""", (scholarship_name,), as_dict=True)
+
+    actual_data_dict = {row['caste']: row['total_applications'] for row in actual_data}
+    user_caste = caste_name.strip().lower()
+
+    used = actual_data_dict.get(user_caste, 0)
+    allowed = caste_distribution.get(user_caste, 0)
+
+    result = True if used >= allowed else False
+    print(f"Caste: {user_caste}, Used: {used}, Allowed: {allowed}, Result: {result}")
+
+    return result

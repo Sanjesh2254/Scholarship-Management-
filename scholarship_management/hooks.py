@@ -251,13 +251,26 @@ permission_query_conditions = {
 
 }
 
-app_include_js =[ "/assets/scholarship_management/js/chat17.js",
+app_include_js =[ "/assets/scholarship_management/js/chat20.js",
 "/assets/scholarship_management/js/students.js",
-
-# "https://checkout.razorpay.com/v1/approval.js"
+"https://checkout.razorpay.com/v1/approval.js"
 ]
 
-doctype_list_js = {
-    "*": "public/js/custom_listview.js"
+
+
+scheduler_events = {
+    "cron": {
+        "0 0 * * *": [
+            "scholarship_management.scheduler.send_one_year_old_applicant_update_email"
+        ]
+    }
 }
 
+
+
+
+
+# website_context = {
+#     "favicon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0lsq0SpUwbknMZo9ZiGP4zv_95ynllj857w&s",
+
+#  }

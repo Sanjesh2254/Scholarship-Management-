@@ -122,7 +122,8 @@
   {
    "fieldname": "update_date",
    "fieldtype": "Date",
-   "label": "Update Date"
+   "label": "Update Date",
+   "read_only": 1
   },
   {
    "fieldname": "documents_section",
@@ -133,8 +134,7 @@
    "depends_on": "community_certificate",
    "fieldname": "caste",
    "fieldtype": "Data",
-   "label": "Caste",
-   "read_only": 1
+   "label": "Caste"
   },
   {
    "fieldname": "community_certificate",
@@ -317,7 +317,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-23 15:11:35.882602",
+ "modified": "2025-09-01 13:15:36.570191",
  "modified_by": "Administrator",
  "module": "Scholarship Management",
  "name": "Applicant Profile",

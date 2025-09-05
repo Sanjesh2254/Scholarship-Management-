@@ -1,7 +1,8 @@
 frappe.ui.form.on("Scholarship Application", {
     
     refresh(frm) {
-   // Trigger payment automatically if status = Paid and no payment yet
+    frm.$wrapper.find(".form-section .form-group label").css("color", "#10b035ff");
+
 if (frm.doc.status === "Paid" && !frm.doc.payment_id) {
     
     let scholarship_name = frm.doc.scholarship_name;
@@ -10,9 +11,9 @@ if (frm.doc.status === "Paid" && !frm.doc.payment_id) {
     if (scholarship_name && applicant) {
         frappe.db.get_doc("Scholarship", scholarship_name)
             .then(scholarship => {
-                let amount = (scholarship.total_amount || 0) * 100; // in paise
+                let amount = (scholarship.total_amount || 0) * 100; 
 
-                // ✅ Check if transaction already exists
+                // Check if transaction already exists
                 frappe.call({
                     method: "frappe.client.get_list",
                     args: {
@@ -29,7 +30,6 @@ if (frm.doc.status === "Paid" && !frm.doc.payment_id) {
                             return;
                         }
 
-                        // Proceed with Razorpay
                         frappe.require("https://checkout.razorpay.com/v1/checkout.js", function () {
                             let options = {
                                 key: "rzp_test_1DP5mmOlF5G5ag",
@@ -39,11 +39,10 @@ if (frm.doc.status === "Paid" && !frm.doc.payment_id) {
                                 description: "Scholarship Payment",
                                 handler: function (response) {
                                     let payment_id = response.razorpay_payment_id;
-                                    let paid_amount = amount / 100; // INR
+                                    let paid_amount = amount / 100; 
 
                                     frappe.msgprint("✅ Payment successful. Payment ID: " + payment_id);
 
-                                    // ✅ Create Transaction
                                     frappe.call({
                                         method: "frappe.client.insert",
                                         args: {
@@ -77,7 +76,7 @@ if (frm.doc.status === "Paid" && !frm.doc.payment_id) {
     }
 }
 
-         frappe.realtime.on("notification", (message) => {
+    frappe.realtime.on("notification", (message) => {
     frappe.show_alert({
         message: message,
         indicator: 'green'

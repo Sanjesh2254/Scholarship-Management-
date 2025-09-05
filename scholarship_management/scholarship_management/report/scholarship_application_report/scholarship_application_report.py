@@ -108,13 +108,12 @@ def get_chart_data(data):
 
 
 def get_report_summary(data):
-    Paid, Applied, Verified, Rejected = 0, 0, 0, 0
+    Paid, Verified, Rejected = 0, 0, 0
 
     for entry in data:
         status = entry.get("status")
-        if status == "Applied":
-            Applied += 1
-        elif status == "Verified":
+        
+        if status == "Verified":
             Verified += 1
         elif status == "Paid":
             Paid += 1
@@ -122,12 +121,6 @@ def get_report_summary(data):
             Rejected += 1
 
     return [
-        {
-            "value": Applied,
-            "indicator": "Blue",
-            "label": "Applied Application",
-            "datatype": "Int"
-        },
         {
             "value": Verified,
             "indicator": "Yellow",

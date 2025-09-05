@@ -2,265 +2,274 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Scholarship List</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- Bootstrap 5 CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Animate.css -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-
-<!-- WOW.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scholarship Explorer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  body {
-    background-color: #f4f6f9;
-    font-family: 'Segoe UI', sans-serif;
-  }
-
-  .navbar {
-    background: linear-gradient(90deg, #56ccf2, #2f80ed);
-  }
-
-  .navbar-brand {
-    font-weight: bold;
-    color: #ffffff !important;
-  }
-
-  .navbar-nav .nav-link {
-    color: #eaf6ff !important;
-    transition: color 0.3s;
-  }
-
-  .navbar-nav .nav-link:hover {
-    color: #ffffff !important;
-  }
-.hero {
-  color: #fff;
-  padding: 100px 0;
-  text-align: center;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
-  transition: background-image 1s ease-in-out;
-  min-height: 250px;
+/* Global */
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #f0f4f8, #e8f5e9);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    color: #1a202c;
 }
 
-.hero::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.5); /* dark overlay for readability */
-  z-index: 0;
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: linear-gradient(90deg, #4cafef, #2ecc71);
+    backdrop-filter: blur(15px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
 }
-
-.hero h1
-{
-  position: relative;
-  z-index: 1;
-  font-size: 55px;
-
+.navbar .logo {
+    font-size: 1.8rem;
+    font-weight: 700;
 }
-
-.hero p {
-  position: relative;
-  z-index: 1;
-  font-size:15px;
-  font-weight: 500;
-
-
+.navbar .nav-links {
+    display: flex;
+    gap: 30px;
 }
-
-
-  .search-bar {
-    max-width: 500px;
-    margin: 30px auto;
-  }
-
-  .form-control {
-    border-radius: 30px;
-    padding: 10px 20px;
-  }
-
-  .card {
-    border: none;
-    border-radius: 12px;
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease;
-  }
-
-  .card:hover {
-    transform: translateY(-6px);
-  }
-
-  .scholarship-title {
-    font-size: 1.3rem;
+.navbar .nav-links a {
+    text-decoration: none;
+    color: #1a202c;
     font-weight: 600;
-  }
+    position: relative;
+}
+.navbar .nav-links a::after {
+    content: '';
+    height: 2px;
+    width: 0;
+    background: #38a169;
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    transition: width 0.3s ease;
+}
+.navbar .nav-links a:hover::after { width: 100%; }
+.menu-toggle { display: none; font-size: 1.8rem; cursor: pointer; }
+@media (max-width:768px){
+    .navbar .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 15px;
+        background: rgba(255,255,255,0.95);
+        padding: 20px;
+        position: absolute;
+        top: 60px;
+        right: 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    }
+    .navbar .nav-links.active {display:flex;}
+    .menu-toggle {display:block;}
+}
 
-  .status-badge, .grade-badge {
-    font-size: 0.75rem;
+/* Slideshow */
+.slideshow-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 30px auto;
     border-radius: 20px;
-    padding: 5px 10px;
-  }
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+.slides {
+    display: none;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 20px;
+    animation: fade 1.5s;
+}
+@keyframes fade { from {opacity:0.4;} to {opacity:1;} }
 
-  .grade-badge {
-    float: right;
-  }
+/* Header */
+h1 {text-align:center; font-size:2.5rem; margin:40px 0 20px 0;}
 
-  footer {
-    background-color: #2f80ed;
-    color: white;
-    padding: 20px 0;
-    margin-top: 50px;
-  }
+/* Container */
+.container {max-width:1200px; margin:0 auto; padding:0 20px;}
 
+/* Filters */
+.filters {display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-bottom:40px;}
+.filters input[type="text"], .filters select {
+    padding:14px 20px;
+    border-radius:50px;
+    border:none;
+    outline:none;
+    font-size:1rem;
+    background: linear-gradient(135deg, #a8edea, #fed6e3);
+    box-shadow:0 6px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.filters input:focus, .filters select:focus {
+    transform: scale(1.05);
+    box-shadow:0 8px 25px rgba(0,0,0,0.2);
+}
+
+/* Scholarship Cards */
+.scholarship-list {
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+    gap:30px;
+}
+.scholarship-card {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(12px);
+    border-radius:25px;
+    padding:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.4s ease;
+    opacity:0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.6s forwards;
+}
+.scholarship-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow:0 20px 50px rgba(0,0,0,0.2);
+}
+.scholarship-card h3 {margin:0 0 12px 0; font-size:1.6rem;}
+.scholarship-card p {margin:6px 0; font-weight:500;}
+.scholarship-card span {font-weight:700; color:#38a169;}
+
+/* Badge */
+.badge {
+    display:inline-block;
+    padding:4px 12px;
+    border-radius:12px;
+    font-size:0.85rem;
+    font-weight:600;
+    margin-bottom:10px;
+    background:#38a16933;
+    color:#276749;
+}
+
+/* Animations */
+@keyframes fadeInUp { to {opacity:1; transform:translateY(0);} }
+
+/* No Results */
+.no-results {text-align:center; color:#e53e3e; font-size:20px; margin-top:50px; font-weight:600;}
 </style>
 </head>
 <body>
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark shadow-sm fixed-top">
-
-  <div class="container">
-    <a class="navbar-brand" href="#">Scholarship Portal</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav">
-      <li class="nav-item"><a class="nav-link active" href="#">Scholarships</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Apply</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">My Applications</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
-      </ul>
+<div class="navbar">
+    <div class="logo">Scholarship Explorer</div>
+    <div class="nav-links" id="navLinks">
+        <a href="#">Home</a>
+        <a href="#">Scholarships</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
     </div>
-  </div>
-</nav>
-
-<!-- Hero Section -->
-<section class="hero" id="heroBanner">
-  <div class="container">
-    <h1 class="wow fadeInDown">Explore Scholarships</h1>
-    <p class="wow fadeInUp">Find and apply for the right scholarship to fuel your dreams.</p>
-  </div>
-</section>
-
-
-<!-- Search Bar -->
-<div class="container search-bar">
-  <input type="text" class="form-control" id="searchInput" placeholder="Search scholarships...">
+    <div class="menu-toggle" id="menuToggle">&#9776;</div>
 </div>
 
-<!-- Scholarship List -->
-<div class="container py-4">
-  <div class="row" id="scholarshipList">
-
-    <!-- Scholarship Card 1 -->
-    <div class="col-md-4 mb-4 scholarship-card wow fadeInUp" data-wow-delay="0.1s">
-      <div class="card h-100">
-        <div class="card-body">
-          <h5 class="scholarship-title">Merit-Based Scholarship 
-            <span class="badge bg-info grade-badge">Grade A</span>
-          </h5>
-          <p class="text-muted">Deadline: 2025-09-30</p>
-          <p>For students with excellent academic performance. Award: ₹50,000.</p>
-          <span class="badge bg-success status-badge">Open</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Scholarship Card 2 -->
-    <div class="col-md-4 mb-4 scholarship-card wow fadeInUp" data-wow-delay="0.2s">
-      <div class="card h-100">
-        <div class="card-body">
-          <h5 class="scholarship-title">Financial Aid Scholarship 
-            <span class="badge bg-danger grade-badge">Grade S</span>
-          </h5>
-          <p class="text-muted">Deadline: 2025-08-20</p>
-          <p>For students in need of financial assistance. Covers tuition up to ₹75,000.</p>
-          <span class="badge bg-warning text-dark status-badge">Closing Soon</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Scholarship Card 3 -->
-    <div class="col-md-4 mb-4 scholarship-card wow fadeInUp" data-wow-delay="0.3s">
-      <div class="card h-100">
-        <div class="card-body">
-          <h5 class="scholarship-title">Women in STEM Scholarship 
-            <span class="badge bg-secondary grade-badge">Grade B</span>
-          </h5>
-          <p class="text-muted">Deadline: 2025-10-15</p>
-          <p>For women in science and tech fields. Award: ₹60,000.</p>
-          <span class="badge bg-secondary status-badge">Upcoming</span>
-        </div>
-      </div>
-    </div>
-
-  </div>
+<!-- Slideshow -->
+<div class="slideshow-container">
+    <img class="slides" src="https://theverifiedpakistan.com/wp-content/uploads/2024/02/Fully-funded-opportunity-for-students-with-Manaaki-Scholarship-in-New-Zealand.jpg" alt="Slide 1">
+    <img class="slides" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQt3H8Cxa8abs1d15UxrdufMKczUyVc7Wrsvw&s" alt="Slide 2">
+    <img class="slides" src="https://devsthali.edu.in/assets/img/course/scholarship.webp" alt="Slide 3">
 </div>
 
-<!-- Footer -->
-<footer class="text-center">
-  <div class="container">
-    <p class="mb-0">© 2025 Scholarship Management System. All rights reserved.</p>
-  </div>
-</footer>
+<div class="container">
+    <div class="filters">
+        <input type="text" id="searchInput" placeholder="Search scholarship...">
+        <select id="categoryFilter">
+            <option value="">All Categories</option>
+            <option value="Merit-based">School-Level</option>
+            <option value="Need-based">Undergraduate</option>
+        </select>
+    </div>
 
-<!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- ✅ FIXED: Missing scholarship list container -->
+    <div class="scholarship-list" id="scholarshipList"></div>
+
+    <div class="no-results" id="noResults" style="display:none;">No scholarships found.</div>
+</div>
+
 <script>
-  new WOW().init();
+async function loadScholarships() {
+  try {
+    const response = await fetch(
+      "http://127.0.0.1:8007/api/resource/Scholarship?fields=[\"name\"]"
+    );
+    const data = await response.json();
+    const list = document.getElementById("scholarshipList");
+    list.innerHTML = "";
 
-  document.getElementById('searchInput').addEventListener('keyup', function () {
-    const filter = this.value.toLowerCase();
-    const cards = document.querySelectorAll('.scholarship-card');
+    if (data.data && data.data.length) {
+      data.data.forEach((s,i) => {
+        const card = document.createElement("div");
+        card.className = "scholarship-card";
+        card.dataset.name = s.name;
+        card.dataset.category = s.scholarship_type; 
+        card.dataset.category = s.amount; 
+        card.dataset.category = s.end_date; 
 
-    cards.forEach(card => {
-      const title = card.querySelector('.scholarship-title').textContent.toLowerCase();
-      card.style.display = title.includes(filter) ? 'block' : 'none';
-    });
-  });
-</script>
-<script>
-  new WOW().init();
-
-  // Image Slideshow for Hero
-  const images = [
-    'https://www.uudoon.in/about/images/scholarships/merit2.jpg',
-    'https://www.ssims.edu.in/wp-content/uploads/2020/03/ssit-students-scholarship-loans.jpg',
-    'https://www.uudoon.in/about/images/scholarships/merit3.jpg'
-  ];
-
-  let currentImage = 0;
-  const hero = document.getElementById('heroBanner');
-
-  function updateHeroBackground() {
-    hero.style.backgroundImage = `url('${images[currentImage]}')`;
-    currentImage = (currentImage + 1) % images.length;
+        card.innerHTML = `
+          <span class="badge">${card.dataset.category}</span>
+          <h3>${s.name}</h3>
+        `;
+        list.appendChild(card);
+      });
+    } else {
+      document.getElementById("noResults").style.display = "block";
+    }
+  } catch (err) {
+    console.error("Error loading scholarships:", err);
   }
+}
 
-  // Start the slideshow
-  updateHeroBackground();
-  setInterval(updateHeroBackground, 3000);
+function filterScholarships() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+    const selectedCategory = document.getElementById('categoryFilter').value;
+    const scholarshipList = document.getElementById('scholarshipList');
+    const noResults = document.getElementById('noResults');
 
-  // Search filter
-  document.getElementById('searchInput').addEventListener('keyup', function () {
-    const filter = this.value.toLowerCase();
-    const cards = document.querySelectorAll('.scholarship-card');
-
-    cards.forEach(card => {
-      const title = card.querySelector('.scholarship-title').textContent.toLowerCase();
-      card.style.display = title.includes(filter) ? 'block' : 'none';
+    let visibleCount = 0;
+    Array.from(scholarshipList.children).forEach(card => {
+        const name = card.dataset.name.toLowerCase();
+        const category = card.dataset.category;
+        if(name.includes(searchTerm) && (selectedCategory === "" || category === selectedCategory)) {
+            card.style.display = "block";
+            visibleCount++;
+        } else {
+            card.style.display="none";
+        }
     });
-  });
+    noResults.style.display = visibleCount === 0 ? "block" : "none";
+}
+
+document.getElementById("searchInput").addEventListener("input", filterScholarships);
+document.getElementById("categoryFilter").addEventListener("change", filterScholarships);
+
+// Mobile menu toggle
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+menuToggle.addEventListener('click', ()=>{navLinks.classList.toggle('active');});
+
+// Slideshow
+let slideIndex = 0;
+function showSlides() {
+    const slides = document.getElementsByClassName("slides");
+    for (let i = 0; i < slides.length; i++) slides[i].style.display = "none";
+    slideIndex++;
+    if (slideIndex > slides.length) slideIndex = 1;
+    slides[slideIndex-1].style.display = "block";
+    setTimeout(showSlides, 4000);
+}
+showSlides();
+
+
+loadScholarships();
 </script>
-
-
 </body>
 </html>

@@ -9,6 +9,8 @@
   "column_break_bjnr",
   "send_email_approval",
   "send_email_renewal",
+  "send_email_transaction",
+  "send_email_new_scholarship",
   "section_break_kiwz",
   "caste_allocate"
  ],
@@ -16,7 +18,7 @@
   {
    "fieldname": "scholarship_name",
    "fieldtype": "Table MultiSelect",
-   "label": "Scholarship Name",
+   "label": "Renewal Scholarship Name",
    "options": "Setting test"
   },
   {
@@ -26,13 +28,13 @@
    "options": "Caste Percentage"
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "send_email_approval",
    "fieldtype": "Check",
    "label": "Send Email Approval"
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "send_email_renewal",
    "fieldtype": "Check",
    "label": "Send Email Renewal"
@@ -44,13 +46,25 @@
   {
    "fieldname": "section_break_kiwz",
    "fieldtype": "Section Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "send_email_transaction",
+   "fieldtype": "Check",
+   "label": "Send Email Transaction"
+  },
+  {
+   "default": "0",
+   "fieldname": "send_email_new_scholarship",
+   "fieldtype": "Check",
+   "label": "Send Email New Scholarship"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2025-08-25 19:08:56.177389",
+ "modified": "2025-08-27 18:57:37.013885",
  "modified_by": "Administrator",
  "module": "Scholarship Management",
  "name": "Scholarship Settings",

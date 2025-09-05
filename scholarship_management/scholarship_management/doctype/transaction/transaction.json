@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "Transaction-.####",
  "creation": "2025-08-20 19:58:00.823075",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,7 +12,8 @@
   "column_break_qdbk",
   "applicant",
   "transaction_type",
-  "transaction_date"
+  "transaction_date",
+  "amended_from"
  ],
  "fields": [
   {
@@ -53,16 +55,29 @@
   {
    "fieldname": "transaction_date",
    "fieldtype": "Date",
-   "label": "Transaction Date"
+   "label": "Transaction Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Transaction",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2025-08-26 15:46:07.006580",
+ "modified": "2025-09-03 11:04:32.949904",
  "modified_by": "Administrator",
  "module": "Scholarship Management",
  "name": "Transaction",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

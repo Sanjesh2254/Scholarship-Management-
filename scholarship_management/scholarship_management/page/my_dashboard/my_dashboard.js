@@ -145,7 +145,7 @@ $(page.main).html(`
 
       <div class="row mb-3 g-2">
         <div class="col-md-4">
-          <input type="text" id="searchName" class="form-control shadow-sm" placeholder="Search by First Letter of Name" style="border-radius:10px;">
+          <input type="text" id="searchName" class="form-control shadow-sm" placeholder="Search by Scholarship Name" style="border-radius:10px;">
         </div>
         <div class="col-md-4">
           <div class="btn-group w-100" role="group" id="statusFilterGroup">

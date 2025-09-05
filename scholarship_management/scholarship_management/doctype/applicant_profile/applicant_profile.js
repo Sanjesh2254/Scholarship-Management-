@@ -2,6 +2,10 @@
 // // For license information, please see license.txt
 
 frappe.ui.form.on("Applicant Profile", {
+        refresh: function (frm) {
+                        frm.$wrapper.find(".form-section .form-group label").css("color", "#10b035ff");
+        },
+
     // after_save: function(frm) {
     //     if (frappe.user.has_role("Student")) {
     //         frappe.msgprint("Your profile has been saved successfully.");
@@ -9,7 +13,7 @@ frappe.ui.form.on("Applicant Profile", {
     //             frappe.set_route('List', 'Scholarship');
     //         }, 3000); 
     //     }
-    // }
+    // },
     is_school: function(frm) {
         if (frm.doc.is_school) {
             frm.set_value('college', 0); 
@@ -23,7 +27,6 @@ frappe.ui.form.on("Applicant Profile", {
     class: function(frm) {
         toggle_fields(frm);
     },
-         // Trigger OCR when file fields change
     previous_semester_marksheet: function (frm) {
         run_ocr(frm, "previous_semester_marksheet");
     },
@@ -53,14 +56,12 @@ frappe.ui.form.on("Applicant Profile", {
     }
 });
 
-// 🔑 Helper function
 function run_ocr(frm, fieldname) {
     if (!frm.doc[fieldname]) {
         frappe.msgprint(__("Please upload a file first in {0}", [fieldname]));
         return;
     }
 
-    // Save doc first so file URL is stored
     frm.save().then(() => {
         frappe.call({
             method: "scholarship_management.scholarship_management.doctype.applicant_profile.applicant_profile.ocr_text",
@@ -73,7 +74,7 @@ function run_ocr(frm, fieldname) {
             callback: function (r) {
                 if (!r.exc && r.message) {
                     frappe.show_alert({
-                    message: __("✅  Extracted Data: " + JSON.stringify(r.message.ocr_text)),
+                    message: __("Extracted Data: " + JSON.stringify(r.message.ocr_text)),
                     indicator: "green"
                 });
 

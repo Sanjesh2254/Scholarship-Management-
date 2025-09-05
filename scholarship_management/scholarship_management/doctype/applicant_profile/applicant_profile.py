@@ -35,13 +35,14 @@ class ApplicantProfile(Document):
 
 @frappe.whitelist()
 def get_permission_query_conditions(user):
-    if "System Manager" in frappe.get_roles(user):
+    roles = frappe.get_roles(user)
+    if "System Manager" in roles or "Scholarship Committee" in roles or "Finance Department" in roles or "Document Verifier" in roles:
         return None
 
-    user_email = frappe.db.get_value("User", user, "email")
-    if not user_email:
-        return "1=0"
-    return f"`tabApplicant Profile`.`email` = '{user_email}'"
+    # user_email = frappe.db.get_value("User", user, "email")
+    # if not user_email:
+    #     return "1=0"
+    # return f"`tabApplicant Profile`.`email` = '{user_email}'"
 
 
 @frappe.whitelist()
@@ -53,7 +54,6 @@ def ocr_text(docname, fieldname):
         frappe.throw(f"No file attached in field: {fieldname}")
 
     try:
-        # Correct file path
         file_path = frappe.get_site_path("public", file_url.lstrip("/"))
 
         if not os.path.exists(file_path):
@@ -69,16 +69,13 @@ def ocr_text(docname, fieldname):
 
         # OCR extraction
         text = pytesseract.image_to_string(img)
-        # Step 2: Check for Income (for income certificates)
         income = None
         match_income = re.search(r"Income\s*[:\s]*([0-9,]+)", text, re.IGNORECASE)
         if match_income:
             income = match_income.group(1)
-            # Remove commas and non-numeric characters (e.g., "USD", "per annum")
             income = re.sub(r"[^\d]", "", income)
 
         if income:
-            # If income info is found, update the respective field
             field_map_income = {
                 "income_certificate": "income"
             }
@@ -90,14 +87,12 @@ def ocr_text(docname, fieldname):
             }
 
 
-        # Step 1: Check if it is a community certificate and extract caste info
         caste_info = None
         match_caste = re.search(r"belongs to\s*[:\s]*([A-Za-z]+)", text, re.IGNORECASE)
         if match_caste:
             caste_info = match_caste.group(1)
 
         if caste_info:
-            # If caste info is found, update the respective field
             field_map_caste = {
                 "community_certificate": "caste"
             }
@@ -108,7 +103,6 @@ def ocr_text(docname, fieldname):
                 "ocr_text": {"caste": caste_info}
             }
 
-        # Step 2: If caste info is not found, fallback to total marks extraction
         total_marks = None
         match_total_marks = re.search(r"Total\s*[:\s]*([0-9]+)", text, re.IGNORECASE)
         if match_total_marks:
@@ -117,7 +111,6 @@ def ocr_text(docname, fieldname):
         if not total_marks:
             frappe.throw("Could not find Total Marks in the uploaded document.")
 
-        # Map file field → total marks field
         field_map_total_marks = {
             "previous_semester_marksheet": "previous_semester_total",
             "tenthmarksheet": "tenth_total",
@@ -128,7 +121,6 @@ def ocr_text(docname, fieldname):
             "twelfth_marksheet": "twelfth_mark"
         }
 
-        # Update respective field for Total Marks
         if fieldname in field_map_total_marks:
             doc.db_set(field_map_total_marks[fieldname], total_marks)
 
