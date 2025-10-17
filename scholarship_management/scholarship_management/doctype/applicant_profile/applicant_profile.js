@@ -2,9 +2,18 @@
 // // For license information, please see license.txt
 
 frappe.ui.form.on("Applicant Profile", {
+
+    
         refresh: function (frm) {
                         frm.$wrapper.find(".form-section .form-group label").css("color", "#10b035ff");
+                        if (frm.doc.__islocal) return;
+
+
+        if (frm.doc.website) {
+            frm.add_web_link(frm.doc.website, ' View Scholarship List');
+        }
         },
+
 
     // after_save: function(frm) {
     //     if (frappe.user.has_role("Student")) {
@@ -53,7 +62,8 @@ frappe.ui.form.on("Applicant Profile", {
     },
     income_certificate: function (frm) {
         run_ocr(frm, "income_certificate");
-    }
+    },
+    
 });
 
 function run_ocr(frm, fieldname) {

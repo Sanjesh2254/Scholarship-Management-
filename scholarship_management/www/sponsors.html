@@ -1,0 +1,27 @@
+{% extends "templates/web.html" %}
+
+{% block title %}Scholarship Sponsors{% endblock %}
+
+{% block page_content %}
+
+<div class="container mt-5">
+  <h3 class="text-center mb-4 text-success">List of Scholarship Sponsors</h3>
+
+  <div class="row">
+    {% for sponsor in sponsors %}
+      <div class="col-md-4 mb-4">
+        <div class="card bg-success text-white"> 
+          <div class="card-body">
+            <h5 class="card-title">{{ sponsor.name }}</h5>
+            <p class="card-text">
+              <strong>Email:</strong> <a href="mailto:{{ sponsor.email }}" class="text-white">{{ sponsor.email }}</a> 
+            </p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+</div>
+
+{% endblock %}

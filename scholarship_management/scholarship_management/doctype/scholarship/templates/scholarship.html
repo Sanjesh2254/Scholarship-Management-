@@ -1,0 +1,88 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<div class="container my-4">
+  <div class="card shadow-sm">
+    <div class="card-header bg-success text-white d-flex align-items-center">
+      <a href="javascript:history.back()" class="btn btn-light btn-sm me-3" title="Go Back">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M15 8a.5.5 0 0 1-.5.5H3.707l4.147 4.146a.5.5 0 0 1-.708.708l-5-5a.5.5 0 0 1 0-.708l5-5a.5.5 0 1 1 .708.708L3.707 7.5H14.5A.5.5 0 0 1 15 8z"/>
+        </svg>
+      </a>
+      <h3 class="mb-0">{{ doc.title or doc.name }}</h3>
+    </div>
+    <div class="card-body">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <p><strong>Scholarship Name:</strong> {{ doc.name }}</p>
+          <p><strong>Total Amount:</strong> <span class="text-primary">{{ doc.total_amount }}</span></p>
+          <p><strong>Start Date:</strong> {{ doc.start_date }}</p>
+          <p><strong>End Date:</strong> {{ doc.end_date }}</p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Status:</strong> 
+            {% if doc.status == 'Active' %}
+              <span class="badge bg-success">{{ doc.status }}</span>
+            {% else %}
+              <span class="badge bg-secondary">{{ doc.status }}</span>
+            {% endif %}
+          </p>
+          <p><strong>Max Applicants Allowed:</strong> {{ doc.max_applicants_allowed }}</p>
+          <p><strong>Posted By:</strong> {{ doc.created_by }}</p>
+        </div>
+      </div>
+
+      <h5 class="mt-4 mb-3 border-bottom pb-2">Eligibility Criteria</h5>
+      <div class="row">
+        {% if doc.cgpa %}
+          <div class="col-md-4 mb-3">
+            <strong>CGPA:</strong> {{ doc.cgpa }}
+          </div>
+        {% endif %}
+        {% if doc.tenth_mark %}
+          <div class="col-md-4 mb-3">
+            <strong>10th Mark:</strong> {{ doc.tenth_mark }}
+          </div>
+        {% endif %}
+        {% if doc.eleventh_mark %}
+          <div class="col-md-4 mb-3">
+            <strong>11th Mark:</strong> {{ doc.eleventh_mark }}
+          </div>
+        {% endif %}
+        {% if doc.twelfth_mark %}
+          <div class="col-md-4 mb-3">
+            <strong>12th Mark:</strong> {{ doc.twelfth_mark }}
+          </div>
+        {% endif %}
+        {% if doc.income %}
+          <div class="col-md-4 mb-3">
+            <strong>Income:</strong> {{ doc.income }}
+          </div>
+        {% endif %}
+        {% if doc.caste %}
+          <div class="col-md-12 mb-3">
+            <strong>Caste:</strong>
+            {% for c in doc.caste %}
+              <span>{{ c }}</span>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      {% if doc.add_on and doc.add_on|length > 0 %}
+      <h5 class="mt-4 mb-3 border-bottom pb-2">Package Add-ons</h5>
+      <ul class="list-group">
+        {% for add_on_item in doc.add_on %}
+          <li class="list-group-item">
+            <h6 class="mb-1">{{ add_on_item.name1 }}</h6>
+            <p class="mb-1"><strong>Price:</strong> {{ add_on_item.price }}</p>
+            <p class="mb-1"><strong>Applicable Months:</strong> {{ add_on_item.applicable_months }}</p>
+            <p class="mb-0"><strong>Total Price:</strong> {{ add_on_item.total_price }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

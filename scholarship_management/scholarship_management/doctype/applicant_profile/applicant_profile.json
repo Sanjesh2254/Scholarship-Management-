@@ -6,6 +6,7 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "application_code",
   "name1",
   "dob",
   "age",
@@ -15,9 +16,11 @@
   "aadhaar_number",
   "phone_number",
   "college",
+  "profile",
   "column_break_kfry",
   "address",
   "update_date",
+  "website",
   "section_break_bozd",
   "school_name",
   "tenth_marksheet",
@@ -312,12 +315,33 @@
   {
    "fieldname": "column_break_ivwk",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "application_code",
+   "fieldtype": "Data",
+   "label": "Applicant Code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "profile",
+   "fieldtype": "Attach Image",
+   "hidden": 1,
+   "label": "Profile"
+  },
+  {
+   "default": "http://127.0.0.1:8007/route",
+   "fieldname": "website",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "website",
+   "options": "URL"
   }
  ],
  "grid_page_length": 50,
+ "image_field": "profile",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-09-01 13:15:36.570191",
+ "modified": "2025-10-14 19:50:15.248521",
  "modified_by": "Administrator",
  "module": "Scholarship Management",
  "name": "Applicant Profile",

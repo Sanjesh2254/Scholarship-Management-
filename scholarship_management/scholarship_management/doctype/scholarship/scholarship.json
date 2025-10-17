@@ -1,7 +1,9 @@
 {
  "actions": [],
+ "allow_guest_to_view": 1,
+ "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:name1",
+ "autoname": "prompt",
  "creation": "2025-08-05 13:28:30.753155",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -15,6 +17,8 @@
   "total_amount",
   "status",
   "created_by",
+  "sponsorship_section",
+  "sponsor_by",
   "eligibility_criteria_section",
   "cgpa",
   "tenth_mark",
@@ -22,12 +26,21 @@
   "column_break_zhoz",
   "income",
   "eleventh_mark",
-  "twelfth_mark"
+  "twelfth_mark",
+  "package_section",
+  "add_on",
+  "coordinator_details_section",
+  "coordinator",
+  "tab_2_tab",
+  "route",
+  "column_break_ouxu",
+  "is_published"
  ],
  "fields": [
   {
    "fieldname": "name1",
    "fieldtype": "Data",
+   "in_global_search": 1,
    "in_standard_filter": 1,
    "label": "Scholarship Name",
    "unique": 1
@@ -37,6 +50,7 @@
    "fieldtype": "Int",
    "label": "Max Applicants Allowed",
    "non_negative": 1,
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -63,7 +77,8 @@
    "fieldname": "total_amount",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Total Amount"
+   "label": "Total Amount",
+   "non_negative": 1
   },
   {
    "fieldname": "created_by",
@@ -73,11 +88,12 @@
   },
   {
    "fieldname": "scholarship_type",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Scholarship Type",
-   "options": "\nUndergraduate\nSchool-Level",
+   "link_filters": "[[\"Scholarship Type\",\"enabled\",\"=\",1]]",
+   "options": "Scholarship Type",
    "placeholder": "---select scholarship type----",
    "sort_options": 1
   },
@@ -125,16 +141,76 @@
    "fieldname": "twelfth_mark",
    "fieldtype": "Int",
    "label": "12th Mark"
+  },
+  {
+   "fieldname": "package_section",
+   "fieldtype": "Section Break",
+   "label": "Package"
+  },
+  {
+   "fieldname": "add_on",
+   "fieldtype": "Table",
+   "label": "Add On",
+   "options": "Scholarship Add-on"
+  },
+  {
+   "fieldname": "tab_2_tab",
+   "fieldtype": "Tab Break",
+   "label": "Tab 2"
+  },
+  {
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "label": "Route"
+  },
+  {
+   "fieldname": "column_break_ouxu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_published",
+   "fieldtype": "Check",
+   "label": "Is Published"
+  },
+  {
+   "fieldname": "coordinator_details_section",
+   "fieldtype": "Section Break",
+   "label": "Coordinator Details"
+  },
+  {
+   "fieldname": "coordinator",
+   "fieldtype": "Table",
+   "label": "Coordinator",
+   "options": "Coordinator Child"
+  },
+  {
+   "fieldname": "sponsor_by",
+   "fieldtype": "Table MultiSelect",
+   "label": "Sponsor By",
+   "options": "Sponsor Child"
+  },
+  {
+   "fieldname": "sponsorship_section",
+   "fieldtype": "Section Break",
+   "label": "Sponsorship"
   }
  ],
  "grid_page_length": 50,
+ "has_web_view": 1,
  "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2025-09-04 13:57:18.679785",
+ "is_published_field": "is_published",
+ "links": [
+  {
+   "link_doctype": "Scholarship Application",
+   "link_fieldname": "scholarship_name"
+  }
+ ],
+ "modified": "2025-10-16 19:30:50.954881",
  "modified_by": "Administrator",
  "module": "Scholarship Management",
  "name": "Scholarship",
- "naming_rule": "By fieldname",
+ "naming_rule": "Set by user",
  "owner": "Administrator",
  "permissions": [
   {
@@ -160,7 +236,9 @@
    "share": 1
   }
  ],
+ "route": "route",
  "row_format": "Dynamic",
+ "show_name_in_global_search": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [

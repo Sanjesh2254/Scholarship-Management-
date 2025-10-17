@@ -246,7 +246,7 @@ def check_existing_application(scholarship_name, applicant):
 
 @frappe.whitelist()
 def get_allowed_scholarships():
-    return frappe.db.get_all(
+    return frappe.db.get_list(
         "Setting test",
         filters={"parent": "Scholarship Settings"},
         pluck="test"

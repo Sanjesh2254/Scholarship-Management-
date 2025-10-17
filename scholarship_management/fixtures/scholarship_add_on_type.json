@@ -1,0 +1,20 @@
+[
+ {
+  "add_on_name": "Full Tuition Waiver",
+  "amount": 5000.0,
+  "description": "Covers the full tuition fee for the duration of the program.",
+  "docstatus": 0,
+  "doctype": "Scholarship Add-on Type",
+  "modified": "2025-10-11 12:44:08.775035",
+  "name": "Full Tuition Waiver"
+ },
+ {
+  "add_on_name": "Monthly Living Stipend",
+  "amount": 500.0,
+  "description": "A stipend to cover living expenses, given monthly to the awardee.",
+  "docstatus": 0,
+  "doctype": "Scholarship Add-on Type",
+  "modified": "2025-10-11 12:45:22.072874",
+  "name": "Monthly Living Stipend"
+ }
+]

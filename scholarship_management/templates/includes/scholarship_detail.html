@@ -1,0 +1,10 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+  <h1>{{ doc.scholarship_name }}</h1>
+  <p>{{ doc.description }}</p>
+  <p>Amount: {{ doc.amount }}</p>
+  <p>Deadline: {{ frappe.utils.format_date(doc.deadline, "d MMMM, yyyy") }}</p>
+
+  <a href="/apply-scholarship?scholarship={{ doc.name }}">Apply Now</a>
+{% endblock %}

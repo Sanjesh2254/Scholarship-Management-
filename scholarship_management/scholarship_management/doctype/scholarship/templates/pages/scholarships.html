@@ -1,0 +1,23 @@
+{% extends "templates/base.html" %}
+
+{% block page_content %}
+<h1>Available Scholarships</h1>
+
+{% if scholarships %}
+<ul>
+    {% for scholarship in scholarships %}
+    <li>
+        <h3>{{ scholarship.name }}</h3>
+        <p>Total Amount: {{ scholarship.total_amount }}</p>
+        <p>Start Date: {{ scholarship.start_date }}</p>
+        <p>End Date: {{ scholarship.end_date }}</p>
+        <p>Max Applicants Allowed: {{ scholarship.max_applicants_allowed }}</p>
+        <p>Status: {{ scholarship.status }}</p>
+        <a href="/{{ scholarship.route }}">View Scholarship</a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No scholarships found.</p>
+{% endif %}
+{% endblock %}

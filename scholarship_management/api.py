@@ -8,15 +8,11 @@ def chatbot_reply(message, user=None):
 
     user_message = message.strip().lower()
 
-    # Greetings
-    if re.search(r"\b(hello|hi)\b", user_message):
-        return ["Hi there! 👋 How can I help you today?"]
+    if re.search(r"\b(hello|hi|hii)\b", user_message):
+        return ["Hi there!  How can I help you today?"]
 
-    # Help
     elif "help" in user_message:
         return ["I can help you with Scholarship navigation, document creation, and reports."]
-
-    
 
     # List scholarships
     elif  "scholarship list" in user_message:
@@ -30,7 +26,7 @@ def chatbot_reply(message, user=None):
         if not scholarships:
             return ["Currently, there are no open scholarships."]
 
-        messages = ["📋 Available Scholarships:"]
+        messages = [" Available Scholarships:"]
         for s in scholarships:
             messages.append(
                 f"• {s.name1} — ₹{s.total_amount} (From {s.start_date} to {s.end_date})"
@@ -47,7 +43,7 @@ def chatbot_reply(message, user=None):
         )
 
         if not scholarship:
-            return [f"❌ Sorry, scholarship '{scholarship_name}' is not available or not active."]
+            return [f" Sorry, scholarship '{scholarship_name}' is not available or not active."]
 
         scholarship_docname = scholarship[0]["name"]
 
@@ -56,7 +52,7 @@ def chatbot_reply(message, user=None):
         applicant_id = frappe.db.get_value("Applicant Profile", {"email": user_email}, "name")
 
         if not applicant_id:
-            return ["⚠️ No Applicant Profile found for your account. Please create one first."]
+            return [" No Applicant Profile found for your account. Please create one first."]
 
         # Check if already applied
         existing_application = frappe.get_all(
@@ -68,7 +64,7 @@ def chatbot_reply(message, user=None):
             fields=["name"]
         )
         if existing_application:
-            return [f"⚠️ You have already applied for '{scholarship_name}'!"]
+            return [f" You have already applied for '{scholarship_name}'!"]
 
         # Run auto_fill to pre-populate data
         auto_data = auto_fill(scholarship_docname)
@@ -85,39 +81,39 @@ def chatbot_reply(message, user=None):
         application.insert(ignore_permissions=True)
         frappe.db.commit()
 
-        return [f"✅ Your application for '{scholarship_name}' has been submitted successfully with required documents auto-attached!"]
+        return [f"Your application for '{scholarship_name}' has been submitted successfully with required documents auto-attached!"]
     
         # Check scholarship status
     elif "my applications status" in user_message:
         apps = get_my_applications()
         if not apps:
-            return ["❌ You have not applied for any scholarships yet."]
+            return [" You have not applied for any scholarships yet."]
         
-        messages = ["📄 Your current scholarship applications:"]
+        messages = ["Your current scholarship applications:"]
         for app in apps:
             messages.append(f"{app['scholarship_name']} → Status: {app['status']}")
         return messages
     elif user_message.startswith("status "):
         scholarship_name = message[7:].strip()  
         if not scholarship_name:
-            return ["⚠️ Please provide the scholarship name. Example: status Chief Minister’s Merit Scholarships"]
+            return ["Please provide the scholarship name. Example: status Chief Minister’s Merit Scholarships"]
 
         # Call your function
         result = get_scholarship_status(scholarship_name)
 
         if "error" in result:
-            return [f"⚠️ {result['error']}"]
+            return [f" {result['error']}"]
         elif result["status"] == "Not applied":
-            return [f"❌ You have not applied for '{scholarship_name}'."]
+            return [f" You have not applied for '{scholarship_name}'."]
         else:
-            return [f"📄 Your application for '{scholarship_name}' is current Status '{result['status']}' (applied on {result['application_date']})."]
+            return [f"Your application for '{scholarship_name}' is current Status '{result['status']}' (applied on {result['application_date']})."]
 
     # Check scholarship details
     elif user_message.startswith("scholarship "):
         # Extract scholarship name after "scholarship "
         scholarship_name = message[11:].strip()  
         if not scholarship_name:
-            return ["⚠️ Please provide the scholarship name. Example: scholarship Chief Minister’s Merit Scholarships"]
+            return [" Please provide the scholarship name. Example: scholarship Chief Minister’s Merit Scholarships"]
 
         scholarship = frappe.get_all(
             "Scholarship",
@@ -126,11 +122,11 @@ def chatbot_reply(message, user=None):
         )
 
         if not scholarship:
-            return [f"❌ Scholarship '{scholarship_name}' not found."]
+            return [f"Scholarship '{scholarship_name}' not found."]
 
         s = scholarship[0]
         details = (
-            f"📄 Scholarship Details:\n"
+            f" Scholarship Details:\n"
             f"• Name: {s['name1']}\n"
             f"• Status: {s['status']}\n"
             f"• Total Amount: ₹{s['total_amount']}\n"
@@ -144,10 +140,10 @@ def chatbot_reply(message, user=None):
 
 
     elif "bye" in user_message:
-        return ["Goodbye! Have a great day! 😊"]
+        return ["Goodbye! Have a great day! "]
 
     else:
-        return [f"We Couldn’t Find What You’re Looking For 😥"]
+        return [f"We Couldn’t Find What You’re Looking For"]
 
 
 def get_my_applications():

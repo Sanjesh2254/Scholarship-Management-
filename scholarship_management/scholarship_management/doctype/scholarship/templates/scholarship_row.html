@@ -1,0 +1,15 @@
+	<div class="col-md-12 mb-10 d-flex">
+	<div class="card w-100" style="font-size: 0.9rem;">
+		<div class="card-body p-3">
+		<h5 class="card-title text-success">{{ doc.title or doc.name }}</h5>
+
+		<p class="card-text mb-1"><strong>Scholarship Type:</strong> {{ doc.scholarship_type }}</p>
+		<p class="card-text mb-1"><strong>Total Amount:</strong> {{ doc.total_amount }}</p>
+		<p class="card-text mb-1"><strong>Start Date:</strong> {{ doc.start_date }}</p>
+		<p class="card-text mb-1"><strong>End Date:</strong> {{ doc.end_date }}</p>
+		<p class="card-text mb-3"><strong>Status:</strong> {{ doc.status }}</p>
+
+		<a href="{{ doc.route }}" class="btn btn-success w-100">View Details</a>
+		</div>
+	</div>
+	</div>

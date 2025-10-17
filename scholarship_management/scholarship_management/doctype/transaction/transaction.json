@@ -1,11 +1,12 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "Transaction-.####",
+ "autoname": "field:id",
  "creation": "2025-08-20 19:58:00.823075",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "id",
   "scholarship",
   "payment_id",
   "paid_amount",
@@ -13,7 +14,8 @@
   "applicant",
   "transaction_type",
   "transaction_date",
-  "amended_from"
+  "amended_from",
+  "initial_audit"
  ],
  "fields": [
   {
@@ -67,17 +69,31 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "fieldname": "id",
+   "fieldtype": "Data",
+   "label": "Id",
+   "read_only": 1,
+   "unique": 1
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:frappe.user.has_role(\"Audit\")",
+   "fieldname": "initial_audit",
+   "fieldtype": "Check",
+   "label": " Initial Audit "
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-09-03 11:04:32.949904",
+ "modified": "2025-10-15 19:02:11.650552",
  "modified_by": "Administrator",
  "module": "Scholarship Management",
  "name": "Transaction",
- "naming_rule": "Expression (old style)",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

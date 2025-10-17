@@ -258,13 +258,17 @@ app_include_js =[ "/assets/scholarship_management/js/chat20.js",
 
 
 
-scheduler_events = {
-    "cron": {
-        "0 0 * * *": [
-            "scholarship_management.scheduler.send_one_year_old_applicant_update_email"
-        ]
-    }
-}
+# scheduler_events = {
+#     "cron": {
+#         "0 0 * * *": [
+#             "scholarship_management.scheduler.send_one_year_old_applicant_update_email",
+#              "scholarship_management.scholarship_management.doctype.scholarship_application.scholarship_application.create_future_scholarships"
+#         ],
+#         "0 0 1 * *": [
+#             "scholarship_management.scholarship_management.doctype.sponsor.sponsor.send_sponsor_reminders"
+#         ]
+#     }
+# }
 
 
 
@@ -274,3 +278,14 @@ scheduler_events = {
 #     "favicon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0lsq0SpUwbknMZo9ZiGP4zv_95ynllj857w&s",
 
 #  }
+
+
+fixtures = [
+    {
+        "doctype": "Scholarship Add-on Type",
+        "filters": [["name", "in", [
+            "Monthly Living Stipend",
+            "Full Tuition Waiver"
+        ]]]
+    }
+]

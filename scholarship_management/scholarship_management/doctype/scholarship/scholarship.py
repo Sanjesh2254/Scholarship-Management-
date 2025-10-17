@@ -1,9 +1,9 @@
 import frappe
 import re
-from frappe.model.document import Document
+from frappe.website.website_generator import WebsiteGenerator
 from frappe.utils import getdate
 
-class Scholarship(Document):
+class Scholarship(WebsiteGenerator):
     def after_insert(self):
         users = frappe.get_all("User", filters={"enabled": 1,"role":"Student"}, pluck="email")
         if users:
@@ -72,7 +72,7 @@ class Scholarship(Document):
             )
     def validate(self):
         
-
+        
         scholarship_name = self.name1
         max_applicants = frappe.db.count('Scholarship Application', {
             'scholarship_name': scholarship_name
@@ -82,14 +82,36 @@ class Scholarship(Document):
         start_date = getdate(self.start_date)
         end_date = getdate(self.end_date)
 
-        if start_date <= current_date <= end_date and max_applicants < self.max_applicants_allowed:
+        if start_date <= current_date <= end_date and max_applicants < int(self.max_applicants_allowed):
             self.status = "Active"
         elif current_date <= start_date:
             self.status = "Upcoming"
         else:
             self.status = "Closed"
-
         self.created_by = frappe.session.user
+
+
+    def before_save(self):
+        total = self.total_amount or 0
+
+        doc_before_save = self.get_doc_before_save()
+
+        old_rows_by_name = {row.name: row for row in doc_before_save.add_on}
+        print(old_rows_by_name)
+
+        for row in self.add_on:
+            old_row = old_rows_by_name.get(row.name)
+            print(old_row)
+            if old_row:
+                total -= old_row.total_price or 0
+            total += row.total_price or 0
+
+        self.total_amount = total
+
+
+
+
+
 
 
 
@@ -139,8 +161,10 @@ def eligibility_criteria(scholarship_name=None):
         print(scholarship.income)
         print(applicant.income)
         return False
-
     
+    
+
+
     if scholarship.tenth_mark and applicant.tenth_mark < scholarship.tenth_mark:
         return False
 
@@ -151,6 +175,7 @@ def eligibility_criteria(scholarship_name=None):
         return False
 
     return True
+
 @frappe.whitelist()
 def caste_allocated(total_applications,scholarship_name):
     user = frappe.session.user
@@ -164,7 +189,6 @@ def caste_allocated(total_applications,scholarship_name):
     doc = frappe.get_doc("Scholarship Settings", "Scholarship Settings")
     caste_distribution = {}
     total_applications = int(total_applications)
-
     total_allocated = 0
     sc_key = None
 

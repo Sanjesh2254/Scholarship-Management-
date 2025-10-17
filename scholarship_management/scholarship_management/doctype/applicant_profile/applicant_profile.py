@@ -12,25 +12,30 @@ from frappe.model.document import Document
 from frappe.utils import today
 from dateutil.relativedelta import relativedelta
 from datetime import date
-
+import uuid
 
 
 
 class ApplicantProfile(Document):
-    def is_valid_aadhar(self):
-        aadhar = self.aadhaar_number  
-        return bool(re.fullmatch(r"^[2-9]{1}[0-9]{11}$", str(aadhar)))
+    
+    
+    # def is_valid_aadhar(self):
+    #     aadhar = self.aadhaar_number  
+    #     return bool(re.fullmatch(r"^[2-9]{1}[0-9]{11}$", str(aadhar)))
 
+    # def before_save(self):
+    #     user_email = frappe.db.get_value("User", frappe.session.user, "email")
+    #     self.email = user_email
+    #     self.update_date=today()
+
+    #     if self.dob:
+    #         self.age = relativedelta(date.today(), frappe.utils.getdate(self.dob)).years
+
+    #     if self.aadhaar_number and not self.is_valid_aadhar():
+    #         frappe.throw("Invalid Aadhaar number")
     def before_save(self):
-        user_email = frappe.db.get_value("User", frappe.session.user, "email")
-        self.email = user_email
-        self.update_date=today()
+       self.application_code = str(uuid.uuid4())[:8].upper()
 
-        if self.dob:
-            self.age = relativedelta(date.today(), frappe.utils.getdate(self.dob)).years
-
-        if self.aadhaar_number and not self.is_valid_aadhar():
-            frappe.throw("Invalid Aadhaar number")
 
 
 @frappe.whitelist()

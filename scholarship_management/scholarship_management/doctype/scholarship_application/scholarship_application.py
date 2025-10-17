@@ -2,12 +2,18 @@
 # For license information, please see license.txt
 
 import frappe
+from frappe.utils import nowdate, add_months
 from frappe.model.document import Document
 from frappe.utils import today
 import frappe
 from frappe.model.document import Document
-
+from frappe.model.naming import make_autoname
 class ScholarshipApplication(Document):
+    def autoname(self):
+        scholarship_name = self.scholarship_name
+        applicant = self.applicant
+        self.name = make_autoname(scholarship_name+"-"+applicant+"-"+".####")
+
     def before_save(self):
         print("save")
         previous_status = self.get_db_value("status")
@@ -42,7 +48,14 @@ class ScholarshipApplication(Document):
                     doc=self,
                     print_format="Scholarship Application",  
                     doctype="Scholarship Application",
-                    as_pdf=True
+                    as_pdf=True,
+                    docname=self.name,
+                    no_Letterhead=0,
+                    Letterhead=None,
+                    orientation="portrait",
+                    format_options=None,
+                    lang=None,
+                    print_Letter = 0
                 )
 
                 frappe.sendmail(
@@ -104,7 +117,7 @@ class ScholarshipApplication(Document):
 
     def on_submit(self):
         self.payment_credited = today()
-       
+
 
 def send_status_notification(doc):
     try:
@@ -137,10 +150,6 @@ def send_status_notification(doc):
 
 
 
-
-
-
-
 @frappe.whitelist()
 def check_existing_application(scholarship_name, applicant):
     existing_application=frappe.db.exists(
@@ -155,7 +164,6 @@ def check_existing_application(scholarship_name, applicant):
 
 def get_permission_query_conditions(user):
     roles = frappe.get_roles(user)
-
     if "System Manager" in roles or "Scholarship Committee" in roles or "Finance Department" in roles or "Document Verifier" in roles:
         return None  
 
@@ -211,3 +219,28 @@ def auto_fill(scholarship_name=None):
     return result
 
 
+from frappe.utils import today, add_days
+
+@frappe.whitelist()
+def create_future_scholarships():
+    date = today()
+    start_date = date
+    end_date = add_days(date, 30)
+    scholarship_name = f"Scholarship {frappe.utils.formatdate(date, 'MMMM yyyy')}"
+
+    if not frappe.db.exists("Scholarship", {"name": scholarship_name}):
+        scholarship = frappe.get_doc({
+            "doctype": "Scholarship",
+            "name": scholarship_name,  
+            "name1": scholarship_name,
+            "total_amount": 25000,
+            "start_date": start_date,
+            "end_date": end_date,
+            "max_applicants_allowed": 10,
+            "status": "Active"
+        })
+        scholarship.insert()
+        frappe.db.commit()
+        frappe.msgprint(f"Created: {scholarship_name}")
+    else:
+        frappe.msgprint(f"Already exists: {scholarship_name}")

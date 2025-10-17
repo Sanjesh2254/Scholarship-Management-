@@ -62,7 +62,7 @@ def get_data(filters):
 
     if filters.get("application_date"):
         condition += f" AND S.application_date='{filters.get('application_date')}'"
-   
+
     query = f"""
         SELECT
             S.scholarship_name,
@@ -75,7 +75,6 @@ def get_data(filters):
             {condition}
         ORDER BY S.application_date DESC
     """
-    
     return frappe.db.sql(query,as_dict=True)
 
 
@@ -100,7 +99,7 @@ def get_chart_data(data):
                 }
             ]
         },
-        "type": "pie",
+        "type": "donut",
         "height": 300
     }
 

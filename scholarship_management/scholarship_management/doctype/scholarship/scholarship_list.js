@@ -1,13 +1,22 @@
 
 
 frappe.listview_settings['Scholarship'] = {
+    add_fields: ['status'],
+  get_indicator: function(doc) {
+    if (doc.status === 'Active') {
+      return [__('Active'), 'green', 'status,=,Active'];
+    } else if (doc.status === 'Upcoming') {
+      return [__('Upcoming'), 'orange', 'status,=,Upcoming'];
+    } else if (doc.status === 'Closed') {
+      return [__('Closed'), 'red', 'status,=,Closed'];
+    }
+  },
     onload(listview) {
-          let filters = {};
+        let filters = {};
         let label = '';
 
-
         if (frappe.user_roles.includes("System Manager")) {
-            filters = {}; // no filter, count all
+            filters = {};
             label = "Total Scholarships";
         }else {
             filters = { status: ["in", ["Active"]] };
@@ -42,54 +51,54 @@ frappe.listview_settings['Scholarship'] = {
         const student_links = `
             <div class="custom-dashboard-link mt-3">
                 <a href="http://127.0.0.1:8007/app/dashboard-view/Admin"
-                   class="indicator-pill tag-pill tag-blue text-center w-100 d-block"
-                   style="margin-top:10px; font-weight:1700;">
+                class="indicator-pill tag-pill tag-blue text-center w-100 d-block"
+                style="margin-top:10px; font-weight:1700;">
                     Dashboard
                 </a>
                 <a href="http://127.0.0.1:8007/app/scholarship"
-                   class="indicator-pill tag-pill tag-blue text-center w-100 d-block"
-                   style="margin-top:30px; font-weight:1700;">
+                class="indicator-pill tag-pill tag-blue text-center w-100 d-block"
+                style="margin-top:30px; font-weight:1700;">
                     Scholarship
                 </a>
-                  <a href="http://127.0.0.1:8007/app/scholarship-application"
-                   class="indicator-pill tag-pill tag-blue text-center w-100 d-block"
-                   style="margin-top:30px; font-weight:1700;">
+                <a href="http://127.0.0.1:8007/app/scholarship-application"
+                class="indicator-pill tag-pill tag-blue text-center w-100 d-block"
+                style="margin-top:30px; font-weight:1700;">
                     Application
                 </a>
-                 <a href="http://127.0.0.1:8007/app/scholarship-renewal"
-                   class="indicator-pill tag-pill tag-blue text-center w-100 d-block"
-                   style="margin-top:30px; font-weight:1700;">
+                <a href="http://127.0.0.1:8007/app/scholarship-renewal"
+                class="indicator-pill tag-pill tag-blue text-center w-100 d-block"
+                style="margin-top:30px; font-weight:1700;">
                     Scholarship Renewal
                 </a>
-                  <a href="http://127.0.0.1:8007/app/transaction"
-                   class="indicator-pill tag-pill tag-blue text-center w-100 d-block"
-                   style="margin-top:30px; font-weight:1700;">
+                <a href="http://127.0.0.1:8007/app/transaction"
+                class="indicator-pill tag-pill tag-blue text-center w-100 d-block"
+                style="margin-top:30px; font-weight:1700;">
                     Transaction
                 </a>
-                  <a href="http://127.0.0.1:8007/app/report"
-                   class="indicator-pill tag-pill tag-blue text-center w-100 d-block"
-                   style="margin-top:30px; font-weight:1700;">
+                <a href="http://127.0.0.1:8007/app/report"
+                class="indicator-pill tag-pill tag-blue text-center w-100 d-block"
+                style="margin-top:30px; font-weight:1700;">
                     Report
                 </a>
-                  <a href="http://127.0.0.1:8007/app/scholarship-settings"
+                   <a href="http://127.0.0.1:8007/app/scholarship-settings"
                    class="indicator-pill tag-pill tag-blue text-center w-100 d-block"
                    style="margin-top:30px; font-weight:1700;">
                 Scholarship Setting
                 </a>
-                 <a href="http://127.0.0.1:8007/app/feedback"
+                   <a href="http://127.0.0.1:8007/app/feedback"
                    class="indicator-pill tag-pill tag-blue text-center w-100 d-block"
                    style="margin-top:30px; font-weight:1700;">
                     Feedback
                 </a>
             </div>
         `;
-
+    
         const other_links = `
             <div class="custom-dashboard-link mt-3">
-                <a href="http://127.0.0.1:8007/app/my-dashboard"
+                   <a href="http://127.0.0.1:8007/app/my-dashboard"
                    class="indicator-pill tag-pill tag-blue text-center w-100 d-block"
                    style="margin-top:10px; font-weight:1700;">
-                    Dashboard
+                   Dashboard
                 </a>
                 <a href="http://127.0.0.1:8007/app/scholarship"
                    class="indicator-pill tag-pill tag-blue text-center w-100 d-block"
@@ -97,26 +106,25 @@ frappe.listview_settings['Scholarship'] = {
                     Scholarship
                 </a>
                   <a href="http://127.0.0.1:8007/app/scholarship-application"
-                   class="indicator-pill tag-pill tag-blue text-center w-100 d-block"
-                   style="margin-top:30px; font-weight:1700;">
+                  class="indicator-pill tag-pill tag-blue text-center w-100 d-block"
+                  style="margin-top:30px; font-weight:1700;">
                     Application
                 </a>
-                  <a href="http://127.0.0.1:8007/app/scholarship-renewal"
+                   <a href="http://127.0.0.1:8007/app/scholarship-renewal"
                    class="indicator-pill tag-pill tag-blue text-center w-100 d-block"
                    style="margin-top:30px; font-weight:1700;">
-                    Scholarship Renewal
+                   Scholarship Renewal
                 </a>
-                  <a href="http://127.0.0.1:8007/app/query-report/Transaction%20Report"
+                   <a href="http://127.0.0.1:8007/app/query-report/Transaction%20Report"
                    class="indicator-pill tag-pill tag-blue text-center w-100 d-block"
                    style="margin-top:30px; font-weight:1700;">
                     Report
                 </a>
-                 <a href="http://127.0.0.1:8007/app/applicant-profile"
+                   <a href="http://127.0.0.1:8007/app/applicant-profile"
                    class="indicator-pill tag-pill tag-blue text-center w-100 d-block"
                    style="margin-top:30px; font-weight:1700;">
                     My Profile
                 </a>
-                 
             </div>
         `;
 

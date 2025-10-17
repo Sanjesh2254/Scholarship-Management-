@@ -2,6 +2,8 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Scholarship Settings', {
+        caste_allocate_remove: function(frm, cdt, cdn) {
+        frappe.msgprint(__('A caste allocation row has been removed. Please check the caste allocations'));},
         refresh: function (frm) {
         frm.$wrapper.find(".form-section .form-group label").css("color", "#10b035ff");
          // Hide default sidebar (empty the layout-side-section)
@@ -96,28 +98,33 @@ frappe.ui.form.on('Scholarship Settings', {
         }
         },
 
-    validate: function(frm) {
-        let seen = new Set();
-        let total = 0;
-
-        (frm.doc.caste_allocate || []).forEach(row => {
-            if (!row.caste_name) return;
-
-            // Check duplicate caste
-            let caste = row.caste_name.trim().toLowerCase();
-            if (seen.has(caste)) {
-                frappe.throw(__('Caste "{0}" is duplicated.', [row.caste_name]));
-            }
-            seen.add(caste);
-
-            // Add percentage
-            total += parseFloat(row.percentage || 0);
-        });
-
-        // Check total percentage
-        if (total !== 100) {
-            frappe.throw(__('Total percentage must be 100. Currently it is {0}.', [total]));
-        }
-    }
 });
 
+frappe.ui.form.on('Caste Percentage', {
+    percentage: function(frm, cdt, cdn) {
+        let total = 0;
+        let seen = new Set();
+
+        let rows = frm.doc.caste_allocate || [];
+
+        for (let row of rows) {
+            if (!row.caste_name) continue;
+
+            let caste = row.caste_name.trim().toLowerCase();
+
+            if (seen.has(caste)) {
+                frappe.msgprint(__('Caste "{0}" is duplicated.', [row.caste_name]));
+                return;
+            }
+
+            seen.add(caste);
+            total += parseFloat(row.percentage || 0);
+        }
+
+        if (total > 100) {
+            frappe.msgprint(__('Total percentage cannot exceed 100. Currently it is {0}.', [total]));
+            frappe.model.set_value(cdt, cdn, 'percentage', 0);
+        }
+    },
+
+});

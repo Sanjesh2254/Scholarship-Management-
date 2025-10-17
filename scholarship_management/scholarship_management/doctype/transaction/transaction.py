@@ -4,20 +4,21 @@ from frappe.model.document import Document
 from frappe.utils import today
 
 class Transaction(Document):
+    def autoname(self):
+        self.id=self.scholarship + "-" + self.applicant
     def before_save(self):
         self.transaction_date = today()
 
     def after_insert(self):
         send_email_approval = frappe.db.get_single_value("Scholarship Settings", "send_email_approval")
-
         if send_email_approval == 1:
             user = frappe.session.user
             recipient_email = frappe.db.get_value("Applicant Profile", self.applicant, "email")
             applicant_full_name = frappe.db.get_value("User", user, "full_name")
 
             pdf = frappe.get_print(
-                "Transaction",          # Doctype
-                self.name,              # Doc name
+                "Transaction",          
+                self.name,              
                 print_format="Transaction",
                 as_pdf=True
             )

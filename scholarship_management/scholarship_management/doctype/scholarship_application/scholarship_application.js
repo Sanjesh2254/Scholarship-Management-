@@ -29,7 +29,6 @@ if (frm.doc.status === "Paid" && !frm.doc.payment_id) {
                         if (res.message && res.message.length > 0) {
                             return;
                         }
-
                         frappe.require("https://checkout.razorpay.com/v1/checkout.js", function () {
                             let options = {
                                 key: "rzp_test_1DP5mmOlF5G5ag",
@@ -40,9 +39,7 @@ if (frm.doc.status === "Paid" && !frm.doc.payment_id) {
                                 handler: function (response) {
                                     let payment_id = response.razorpay_payment_id;
                                     let paid_amount = amount / 100; 
-
-                                    frappe.msgprint("✅ Payment successful. Payment ID: " + payment_id);
-
+                                    frappe.msgprint(" Payment successful. Payment ID: " + payment_id);
                                     frappe.call({
                                         method: "frappe.client.insert",
                                         args: {
@@ -51,14 +48,29 @@ if (frm.doc.status === "Paid" && !frm.doc.payment_id) {
                                                 applicant: applicant,
                                                 scholarship: scholarship_name,
                                                 payment_id: payment_id,
-                                                transaction_type:"Normal",
-                                                paid_amount: paid_amount,
+                                                transaction_type: "Normal",
+                                                paid_amount: paid_amount
                                             }
                                         },
-                                        callback: function(r) {
-                                            if (!r.exc) {
-                                                frappe.msgprint("💾 Transaction created successfully!");
-                                                frm.reload_doc();
+                                        callback: function(response) {
+                                            if (!response.exc && response.message) {
+                                                const inserted_doc = response.message;
+
+                                                frappe.call({
+                                                    method: "frappe.client.submit",
+                                                    args: {
+                                                        doc: inserted_doc
+                                                    },
+                                                    callback: function(submit_response) {
+                                                        if (!submit_response.exc) {
+                                                            frappe.msgprint("Transaction submitted successfully!");
+                                                        } else {
+                                                            frappe.msgprint("Failed to submit transaction.");
+                                                        }
+                                                    }
+                                                });
+                                            } else {
+                                                frappe.msgprint("Failed to create transaction.");
                                             }
                                         }
                                     });
@@ -197,7 +209,7 @@ function check_existing(frm) {
             },
             callback: function (r) {
                 if (r.message) {
-                    frappe.msgprint(__("You have already applied for this scholarship."));
+                    frappe.throw(__("You have already applied for this scholarship."));
                     frm.set_value("scholarship_name", "");
                 }
             }

@@ -1,0 +1,7 @@
+<div class="scholarship-card">
+  <h3>{{ doc.scholarship_name }}</h3>
+  <p>{{ doc.description }}</p>
+  <p>Amount: {{ doc.amount }}</p>
+  <p>Deadline: {{ frappe.utils.format_date(doc.deadline, "d MMM, yyyy") }}</p>
+  <a href="{{ doc.route }}">View Scholarship</a>
+</div>

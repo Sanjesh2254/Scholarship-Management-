@@ -3,6 +3,6 @@
 
 frappe.ui.form.on("Transaction", {
  refresh: function (frm) {
-                        frm.$wrapper.find(".form-section .form-group label").css("color", "#10b035ff");
+        frm.$wrapper.find(".form-section .form-group label").css("color", "#10b035ff");
         }
 });

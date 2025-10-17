@@ -12,7 +12,6 @@
   "column_break_smic",
   "applicant",
   "status",
-  "amended_from",
   "document_section",
   "community_certificate",
   "tenth_marksheet",
@@ -24,7 +23,13 @@
   "previous_semester_marksheet",
   "tamil_medium_certificate",
   "section_break_qvme",
-  "reason_for_applying"
+  "reason_for_applying",
+  "amended_from",
+  "lft",
+  "rgt",
+  "is_group",
+  "old_parent",
+  "parent_scholarship_application"
  ],
  "fields": [
   {
@@ -141,16 +146,53 @@
    "fieldtype": "Date",
    "label": "Payment Credited",
    "read_only": 1
+  },
+  {
+   "fieldname": "lft",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Left",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "rgt",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Right",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_group",
+   "fieldtype": "Check",
+   "label": "Is Group"
+  },
+  {
+   "fieldname": "old_parent",
+   "fieldtype": "Link",
+   "label": "Old Parent",
+   "options": "Scholarship Application"
+  },
+  {
+   "fieldname": "parent_scholarship_application",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "Parent Scholarship Application",
+   "options": "Scholarship Application"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
+ "is_tree": 1,
  "links": [],
- "modified": "2025-09-03 16:49:20.403754",
+ "modified": "2025-10-10 19:58:32.493394",
  "modified_by": "Administrator",
  "module": "Scholarship Management",
  "name": "Scholarship Application",
  "naming_rule": "Expression (old style)",
+ "nsm_parent_field": "parent_scholarship_application",
  "owner": "Administrator",
  "permissions": [
   {
@@ -182,6 +224,11 @@
  "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": [],
+ "states": [
+  {
+   "color": "Orange",
+   "title": " Pending Verification"
+  }
+ ],
  "title_field": "scholarship_name"
 }
