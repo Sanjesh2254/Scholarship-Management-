@@ -3,6 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
+# from scholarship_management.scholarship_management.doctype.sponsor.sponsor import send_sponsor_reminders
 
 
 class Sponsor(Document):
@@ -21,7 +22,6 @@ def send_sponsor_reminders():
             recipients=sponsor.email,
             subject="Scholarship Fund Reminder",
             message="This is a monthly reminder to release scholarship funds."
+
         )
 
-
-scholarship_management.scholarship_management.doctype.sponsor.sponsor.send_sponsor_reminders

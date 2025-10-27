@@ -35,6 +35,7 @@
    "placeholder": "eg,..1 month"
   },
   {
+   "default": "0",
    "fieldname": "total_price",
    "fieldtype": "Currency",
    "in_list_view": 1,
@@ -46,7 +47,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-10-11 13:01:02.983600",
+ "modified": "2025-10-25 13:26:43.797928",
  "modified_by": "Administrator",
  "module": "Scholarship Management",
  "name": "Scholarship Add-on",

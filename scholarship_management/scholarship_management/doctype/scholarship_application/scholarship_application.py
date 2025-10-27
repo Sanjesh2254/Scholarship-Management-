@@ -4,15 +4,15 @@
 import frappe
 from frappe.utils import nowdate, add_months
 from frappe.model.document import Document
-from frappe.utils import today
-import frappe
-from frappe.model.document import Document
+from frappe.utils import today,add_days
+
 from frappe.model.naming import make_autoname
 class ScholarshipApplication(Document):
     def autoname(self):
         scholarship_name = self.scholarship_name
-        applicant = self.applicant
-        self.name = make_autoname(scholarship_name+"-"+applicant+"-"+".####")
+        applicant = frappe.get_doc("Applicant Profile",self.applicant)
+        applicant_name=applicant.name1
+        self.name = make_autoname(scholarship_name+"-"+applicant_name+"-"+".####")
 
     def before_save(self):
         print("save")
@@ -49,13 +49,7 @@ class ScholarshipApplication(Document):
                     print_format="Scholarship Application",  
                     doctype="Scholarship Application",
                     as_pdf=True,
-                    docname=self.name,
-                    no_Letterhead=0,
-                    Letterhead=None,
-                    orientation="portrait",
-                    format_options=None,
-                    lang=None,
-                    print_Letter = 0
+                    docname=self.name
                 )
 
                 frappe.sendmail(
@@ -117,6 +111,18 @@ class ScholarshipApplication(Document):
 
     def on_submit(self):
         self.payment_credited = today()
+        self.submit_boarded_tickets()
+
+    def submit_transaction(self):
+        transaction = frappe.get_all(
+            "Transaction",
+            filters={"initial_audit": 1,},
+            pluck="name"
+        )
+
+        for name in transaction:
+            audit = frappe.get_doc("Transaction", name)
+            audit.submit()
 
 
 def send_status_notification(doc):
@@ -219,7 +225,6 @@ def auto_fill(scholarship_name=None):
     return result
 
 
-from frappe.utils import today, add_days
 
 @frappe.whitelist()
 def create_future_scholarships():
@@ -227,7 +232,6 @@ def create_future_scholarships():
     start_date = date
     end_date = add_days(date, 30)
     scholarship_name = f"Scholarship {frappe.utils.formatdate(date, 'MMMM yyyy')}"
-
     if not frappe.db.exists("Scholarship", {"name": scholarship_name}):
         scholarship = frappe.get_doc({
             "doctype": "Scholarship",

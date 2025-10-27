@@ -35,6 +35,7 @@ class ApplicantProfile(Document):
     #         frappe.throw("Invalid Aadhaar number")
     def before_save(self):
        self.application_code = str(uuid.uuid4())[:8].upper()
+       self.name1=self.first_name + " " + self.last_name
 
 
 
@@ -137,3 +138,5 @@ def ocr_text(docname, fieldname):
     except Exception as e:
         frappe.log_error(f"OCR Failed: {e}", "OCR Error")
         frappe.throw("OCR failed. Check the error logs.")
+
+

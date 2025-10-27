@@ -1,7 +1,6 @@
 {
  "actions": [],
- "allow_rename": 1,
- "autoname": "field:name1",
+ "autoname": "autoincrement",
  "creation": "2025-10-16 14:32:36.599216",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -52,11 +51,11 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-16 15:42:00.004257",
+ "modified": "2025-10-24 16:22:09.728903",
  "modified_by": "Administrator",
  "module": "Scholarship Management",
  "name": "Sponsor",
- "naming_rule": "By fieldname",
+ "naming_rule": "Autoincrement",
  "owner": "Administrator",
  "permissions": [
   {

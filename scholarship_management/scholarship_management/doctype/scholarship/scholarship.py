@@ -5,19 +5,21 @@ from frappe.utils import getdate
 
 class Scholarship(WebsiteGenerator):
     def after_insert(self):
+        frappe.enqueue(send_scholarship_email, scholarship_name=self.name1,start_date=self.start_date,end_date=self.end_date,total_amount=self.total_amount,name=self.name)
+    def send_scholarship_email(scholarship_name,start_date,end_date,total_amount,name):
         users = frappe.get_all("User", filters={"enabled": 1,"role":"Student"}, pluck="email")
         if users:
-            subject = f"🎓 New Scholarship Created: {self.name1}"
+            subject = f"🎓 New Scholarship Created: {scholarship_name}"
             message = f"""
             <div style="font-family: Arial, sans-serif; max-width:600px; margin:20px auto; 
             border:1px solid #e0e0e0; border-radius:6px; background:#ffffff;">
 
     <!-- Header with Logo -->
     <div style="text-align: center; padding: 20px 0; border-bottom: 3px solid #4CAF50; 
-                background-color: #ffffff; border-radius: 6px 6px 0 0;">
+        background-color: #ffffff; border-radius: 6px 6px 0 0;">
         <img src="https://media.istockphoto.com/id/1366851749/vector/scholarship-banner.jpg?s=612x612&w=0&k=20&c=qFKJiZGmD97vYxqi0qiTolbHV3fDgjYuhNtTbj7cndM=" 
-             alt="Scholarship Logo" 
-             style="max-height: 120px; margin-bottom: 10px;">
+        alt="Scholarship Logo" 
+        style="max-height: 120px; margin-bottom: 10px;">
         <h2 style="color: #4CAF50; margin: 0; font-size: 26px;">🎓 New Scholarship Available!</h2>
     </div>
 
@@ -31,24 +33,24 @@ class Scholarship(WebsiteGenerator):
         <table style="width:100%; border-collapse:collapse; margin:15px 0;">
             <tr>
                 <td style="padding:8px; font-weight:bold; border-bottom:1px solid #ddd;">Scholarship Name</td>
-                <td style="padding:8px; border-bottom:1px solid #ddd;">{self.name1}</td>
+                <td style="padding:8px; border-bottom:1px solid #ddd;">{scholarship_name}</td>
             </tr>
             <tr>
                 <td style="padding:8px; font-weight:bold; border-bottom:1px solid #ddd;">Start Date</td>
-                <td style="padding:8px; border-bottom:1px solid #ddd;">{self.start_date}</td>
+                <td style="padding:8px; border-bottom:1px solid #ddd;">{start_date}</td>
             </tr>
             <tr>
                 <td style="padding:8px; font-weight:bold; border-bottom:1px solid #ddd;">End Date</td>
-                <td style="padding:8px; border-bottom:1px solid #ddd;">{self.end_date}</td>
+                <td style="padding:8px; border-bottom:1px solid #ddd;">{end_date}</td>
             </tr>
             <tr>
                 <td style="padding:8px; font-weight:bold; border-bottom:1px solid #ddd;">Total Amount</td>
-                <td style="padding:8px; border-bottom:1px solid #ddd;">₹ {self.total_amount}</td>
+                <td style="padding:8px; border-bottom:1px solid #ddd;">₹ {total_amount}</td>
             </tr>
         </table>
 
         <div style="text-align:center; margin-top:20px;">
-            <a href="{frappe.utils.get_url()}/app/scholarship/{self.name}" 
+            <a href="{frappe.utils.get_url()}/app/scholarship/{name}" 
             style="background:#2e7d32; color:white; padding:10px 20px; 
                 text-decoration:none; border-radius:5px; font-weight:bold;">
                 View Scholarship
@@ -71,8 +73,7 @@ class Scholarship(WebsiteGenerator):
                 now=True
             )
     def validate(self):
-        
-        
+
         scholarship_name = self.name1
         max_applicants = frappe.db.count('Scholarship Application', {
             'scholarship_name': scholarship_name
@@ -93,22 +94,20 @@ class Scholarship(WebsiteGenerator):
 
     def before_save(self):
         total = self.total_amount or 0
-
         doc_before_save = self.get_doc_before_save()
-
         old_rows_by_name = {row.name: row for row in doc_before_save.add_on}
         print(old_rows_by_name)
-
         for row in self.add_on:
             old_row = old_rows_by_name.get(row.name)
             print(old_row)
             if old_row:
                 total -= old_row.total_price or 0
-            total += row.total_price or 0
-
+            total += row.total_price or 0 
         self.total_amount = total
 
 
+   
+                
 
 
 
@@ -223,5 +222,7 @@ def caste_allocated(total_applications,scholarship_name):
 
     result = True if used >= allowed else False
     print(f"Caste: {user_caste}, Used: {used}, Allowed: {allowed}, Result: {result}")
+
+
 
     return result

@@ -5,7 +5,8 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "sample"
+  "sample",
+  "sender"
  ],
  "fields": [
   {
@@ -13,12 +14,18 @@
    "fieldtype": "Link",
    "label": "Sample",
    "options": "Sample"
+  },
+  {
+   "fieldname": "sender",
+   "fieldtype": "Select",
+   "label": "sender",
+   "options": "Name\nerf"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-10 13:17:04.193404",
+ "modified": "2025-10-25 18:17:35.709270",
  "modified_by": "Administrator",
  "module": "Scholarship Management",
  "name": "sample1",
@@ -38,6 +45,7 @@
   }
  ],
  "row_format": "Dynamic",
+ "sender_field": "sender",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

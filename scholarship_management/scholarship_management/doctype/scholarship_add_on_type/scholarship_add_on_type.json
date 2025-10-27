@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:add_on_name",
+ "autoname": "prompt",
  "creation": "2025-10-11 12:41:24.050818",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -41,11 +41,11 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-11 12:46:59.104004",
+ "modified": "2025-10-25 13:21:30.311907",
  "modified_by": "Administrator",
  "module": "Scholarship Management",
  "name": "Scholarship Add-on Type",
- "naming_rule": "By fieldname",
+ "naming_rule": "Set by user",
  "owner": "Administrator",
  "permissions": [
   {
@@ -62,7 +62,9 @@
   }
  ],
  "row_format": "Dynamic",
+ "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "add_on_name"
 }

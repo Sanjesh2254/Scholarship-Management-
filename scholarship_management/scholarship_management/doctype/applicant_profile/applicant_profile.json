@@ -7,11 +7,13 @@
  "engine": "InnoDB",
  "field_order": [
   "application_code",
-  "name1",
+  "first_name",
+  "last_name",
   "dob",
   "age",
   "is_school",
   "column_break_tpyp",
+  "name1",
   "email",
   "aadhaar_number",
   "phone_number",
@@ -60,7 +62,8 @@
   {
    "fieldname": "name1",
    "fieldtype": "Data",
-   "label": "Name"
+   "label": "Full Name",
+   "read_only": 1
   },
   {
    "fieldname": "email",
@@ -335,13 +338,27 @@
    "hidden": 1,
    "label": "website",
    "options": "URL"
+  },
+  {
+   "fieldname": "first_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "First Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "last_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Last Name",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "image_field": "profile",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-14 19:50:15.248521",
+ "modified": "2025-10-25 17:00:21.740842",
  "modified_by": "Administrator",
  "module": "Scholarship Management",
  "name": "Applicant Profile",

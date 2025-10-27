@@ -43,6 +43,7 @@
    "in_global_search": 1,
    "in_standard_filter": 1,
    "label": "Scholarship Name",
+   "reqd": 1,
    "unique": 1
   },
   {
@@ -56,6 +57,8 @@
   {
    "fieldname": "start_date",
    "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Start Date",
    "reqd": 1
   },
@@ -206,7 +209,7 @@
    "link_fieldname": "scholarship_name"
   }
  ],
- "modified": "2025-10-16 19:30:50.954881",
+ "modified": "2025-10-24 16:15:45.828135",
  "modified_by": "Administrator",
  "module": "Scholarship Management",
  "name": "Scholarship",
@@ -254,5 +257,6 @@
    "color": "Red",
    "title": "Closed"
   }
- ]
+ ],
+ "track_changes": 1
 }
