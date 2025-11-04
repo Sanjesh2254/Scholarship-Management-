@@ -1,0 +1,13 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Scholarship",
+  "enabled": 1,
+  "modified": "2025-11-01 19:23:10.817767",
+  "module": "Scholarship Management",
+  "name": "Scholarship Client Script",
+  "script": "frappe.ui.form.on('Scholarship', {\r\n    start_date: function(frm) {\r\n        const selected_date = new Date(frm.doc.start_date);\r\n        const today = frappe.datetime.get_today(); \r\n        const today_date = new Date(today);\r\n\r\n        if (selected_date < today_date) {\r\n            frappe.msgprint(__('Start Date cannot be in the past'));\r\n            frm.set_value('start_date', null);\r\n        }\r\n    },\r\n\r\n    end_date: function(frm) {\r\n        const start_date = new Date(frm.doc.start_date);\r\n        const end_date = new Date(frm.doc.end_date);\r\n\r\n        if (end_date < start_date) {\r\n            frappe.msgprint(__('End Date cannot be earlier than Start Date'));\r\n            frm.set_value('end_date', null);\r\n        }\r\n    },\r\n    onload:function(frm){\r\n        frappe.mrgprint(\"hello\")    }\r\n});\r\n",
+  "view": "Form"
+ }
+]

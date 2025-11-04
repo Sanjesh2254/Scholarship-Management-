@@ -1,11 +1,6 @@
-// Copyright (c) 2025, sanjesh and contributors
-// For license information, please see license.txt
+// // Copyright (c) 2025, sanjesh and contributors
+// // For license information, please see license.txt
 
-// frappe.ui.form.on("Scholarship", {
-// 	refresh(frm) {
-
-// 	},
-// });
 frappe.ui.form.on('Scholarship', {
    
     
@@ -28,8 +23,14 @@ frappe.ui.form.on('Scholarship', {
     //     }
     // },
     
-
+    onload: function(frm) {
+        frappe.msgprint("onload");
+    },
     refresh: function (frm) {
+        frappe.msgprint("refresh")
+        if (frm.doc.max_applicants_allowed)
+            total_applicant(frm);
+            total_applicants_applied(frm);
         frm.add_custom_button('Count', () => {
             let d = new frappe.ui.Dialog({
     title: 'Enter details',
@@ -173,6 +174,7 @@ d.show();
         }
     },
 
+
 });
 
 
@@ -190,5 +192,63 @@ function total_price(frm, cdt, cdn) {
     let row = locals[cdt][cdn];
         row.total_price = row.price * row.applicable_months;
         frm.refresh_field('add_on');
-       
+
+}
+
+function total_applicants_applied(frm) { 
+    if (frm.doc.max_applicants_allowed) 
+        frappe.call({
+            method: "scholarship_management.scholarship_management.doctype.scholarship.scholarship.get_application_count",
+            args: { scholarship_name: frm.doc.name1 },
+            callback: function(response) { 
+                let application_count = response.message; 
+
+            let html = `
+                <div class="card shadow-sm bg-light">
+                    <div class="card-body">
+                        <h4 class="card-title">Total Applicants Applied</h4>
+                        <div class="h1" style="color: #007bff;">${application_count}</div>
+
+                    </div>
+                </div>
+            `; 
+
+            frm.fields_dict.total_applicants_applied.$wrapper.html(html);
+    }  });
+}
+
+function total_applicant(frm) { 
+    if (frm.doc.max_applicants_allowed) 
+        frappe.call({
+            method: "scholarship_management.scholarship_management.doctype.scholarship.scholarship.get_application_count",
+            args: { scholarship_name: frm.doc.name1 },
+            callback: function(response) { 
+                let application_count = response.message; 
+                let remaining_seats = frm.doc.max_applicants_allowed - application_count;  
+                let remaining_percentage = (remaining_seats / frm.doc.max_applicants_allowed) * 100;
+
+
+
+                if (remaining_percentage <= 20) {
+                    color_class = 'text-danger'; 
+                } else if (remaining_percentage > 20 && remaining_percentage < 50) {
+                    color_class = 'text-warning'; 
+                } else if (remaining_percentage >= 50) {
+                    color_class = 'text-success'; 
+                }
+
+                let html = `
+                    <div class="card shadow-sm mb-3 bg-light">
+                        <div class="card-body">
+                            <h4 class="card-title">Remaining Seats</h4>
+                            <div class="h1 ${color_class}">${remaining_seats}</div>
+                        
+                        </div>
+                    </div>
+                `; 
+
+                frm.fields_dict.total_applicant.$wrapper.html(html);
+            }
+    
+            });
 }

@@ -1,35 +1,38 @@
 {
  "actions": [],
- "autoname": "autoincrement",
- "creation": "2025-10-10 13:16:27.750736",
+ "allow_rename": 1,
+ "creation": "2025-10-30 16:52:21.744305",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "sample",
-  "sender"
+  "name1",
+  "column_break_hnnm",
+  "name2"
  ],
  "fields": [
   {
-   "fieldname": "sample",
-   "fieldtype": "Link",
-   "label": "Sample",
-   "options": "Sample"
+   "fieldname": "name1",
+   "fieldtype": "Data",
+   "label": "Name"
   },
   {
-   "fieldname": "sender",
-   "fieldtype": "Select",
-   "label": "sender",
-   "options": "Name\nerf"
+   "fieldname": "name2",
+   "fieldtype": "Data",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "column_break_hnnm",
+   "fieldtype": "Column Break"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
+ "is_virtual": 1,
  "links": [],
- "modified": "2025-11-03 12:56:49.430775",
+ "modified": "2025-10-31 18:42:24.282734",
  "modified_by": "Administrator",
  "module": "Scholarship Management",
- "name": "sample1",
- "naming_rule": "Autoincrement",
+ "name": "Review",
  "owner": "Administrator",
  "permissions": [
   {
@@ -46,7 +49,6 @@
   }
  ],
  "row_format": "Dynamic",
- "sender_field": "sender",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

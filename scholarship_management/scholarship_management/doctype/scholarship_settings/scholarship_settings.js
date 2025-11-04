@@ -86,7 +86,7 @@ frappe.ui.form.on('Scholarship Settings', {
                    style="margin-top:30px; font-weight:1700;">
                     My Profile
                 </a>
-                 
+
             </div>
         `;
 

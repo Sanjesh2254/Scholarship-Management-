@@ -1,0 +1,50 @@
+[
+ {
+  "caste_allocate": [
+   {
+    "caste_name": "BC",
+    "parent": "Scholarship Settings",
+    "parentfield": "caste_allocate",
+    "parenttype": "Scholarship Settings",
+    "percentage": 20
+   },
+   {
+    "caste_name": "OBC",
+    "parent": "Scholarship Settings",
+    "parentfield": "caste_allocate",
+    "parenttype": "Scholarship Settings",
+    "percentage": 30
+   },
+   {
+    "caste_name": "MBC",
+    "parent": "Scholarship Settings",
+    "parentfield": "caste_allocate",
+    "parenttype": "Scholarship Settings",
+    "percentage": 30
+   },
+   {
+    "caste_name": "SC",
+    "parent": "Scholarship Settings",
+    "parentfield": "caste_allocate",
+    "parenttype": "Scholarship Settings",
+    "percentage": 20
+   }
+  ],
+  "docstatus": 0,
+  "doctype": "Scholarship Settings",
+  "modified": "2025-10-06 13:30:53.388151",
+  "name": "Scholarship Settings",
+  "scholarship_name": [
+   {
+    "parent": "Scholarship Settings",
+    "parentfield": "scholarship_name",
+    "parenttype": "Scholarship Settings",
+    "test": "Academic Scholarship"
+   }
+  ],
+  "send_email_approval": 1,
+  "send_email_new_scholarship": 1,
+  "send_email_renewal": 1,
+  "send_email_transaction": 1
+ }
+]

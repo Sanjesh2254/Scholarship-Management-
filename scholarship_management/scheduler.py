@@ -12,7 +12,6 @@ def send_one_year_old_applicant_update_email():
         email = "sanjeshtridots@gmail.com"
         print(email)
         subject = "🔔 Please Update Your Profile"
-
         html_message = f"""
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; 
                     border: 1px solid #e0e0e0; border-radius: 10px; background: #fafafa;">

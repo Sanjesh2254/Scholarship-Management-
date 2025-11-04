@@ -1,0 +1,42 @@
+[
+ {
+  "address": null,
+  "docstatus": 0,
+  "doctype": "Sponsors",
+  "email": "contact@greentech.com",
+  "modified": "2025-10-27 13:33:27.742158",
+  "name": 1,
+  "name1": "GreenTech Solutions",
+  "phone_number": "+91-9876543210"
+ },
+ {
+  "address": null,
+  "docstatus": 0,
+  "doctype": "Sponsors",
+  "email": "info@edusupport.org",
+  "modified": "2025-10-27 13:34:14.227741",
+  "name": 2,
+  "name1": "EduSupport Inc",
+  "phone_number": "+91-9876543210"
+ },
+ {
+  "address": null,
+  "docstatus": 0,
+  "doctype": "Sponsors",
+  "email": "info@futureworks.com",
+  "modified": "2025-10-27 13:34:53.064338",
+  "name": 3,
+  "name1": "FutureWorks",
+  "phone_number": "+91-9876543210"
+ },
+ {
+  "address": null,
+  "docstatus": 0,
+  "doctype": "Sponsors",
+  "email": "greentech@gmail.com",
+  "modified": "2025-10-29 17:46:02.378707",
+  "name": 5,
+  "name1": "GreenTech Solutions1",
+  "phone_number": null
+ }
+]

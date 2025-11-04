@@ -91,8 +91,11 @@ class Scholarship(WebsiteGenerator):
             self.status = "Closed"
         self.created_by = frappe.session.user
 
+    def on_update(self):
+        self.max_applicants_allowed="20"
 
     def before_save(self):
+        # print("count before save",count)
         total = self.total_amount or 0
         doc_before_save = self.get_doc_before_save()
         old_rows_by_name = {row.name: row for row in doc_before_save.add_on}
@@ -106,12 +109,16 @@ class Scholarship(WebsiteGenerator):
         self.total_amount = total
 
 
-   
-                
 
 
-
-
+@frappe.whitelist()
+def get_application_count(scholarship_name):
+    if scholarship_name:
+        
+        count = frappe.db.count('Scholarship Application', {
+            'scholarship_name': scholarship_name
+        })
+        return count
 
 
 

@@ -75,8 +75,7 @@ app_license = "mit"
 
 # add methods and filters to jinja environment
 # jinja = {
-# 	"methods": "scholarship_management.utils.jinja_methods",
-# 	"filters": "scholarship_management.utils.jinja_filters"
+# 	"methods": "scholarship_management.utils"
 # }
 
 # Installation
@@ -243,19 +242,29 @@ app_license = "mit"
 # }
 
 
-permission_query_conditions = {
-    "Scholarship": "scholarship_management.scholarship_management.doctype.scholarship.scholarship.get_permission_query_conditions",
-    "Applicant Profile":"scholarship_management.scholarship_management.doctype.applicant_profile.applicant_profile.get_permission_query_conditions",
-    "Scholarship Application":"scholarship_management.scholarship_management.doctype.scholarship_application.scholarship_application.get_permission_query_conditions",
-    "Scholarship Renewal":"scholarship_management.scholarship_management.doctype.scholarship_renewal.scholarship_renewal.get_permission_query_conditions",
+# permission_query_conditions = {
+#     "Scholarship": "scholarship_management.scholarship_management.doctype.scholarship.scholarship.get_permission_query_conditions",
+#     "Applicant Profile":"scholarship_management.scholarship_management.doctype.applicant_profile.applicant_profile.get_permission_query_conditions",
+#     "Scholarship Application":"scholarship_management.scholarship_management.doctype.scholarship_application.scholarship_application.get_permission_query_conditions",
+#     "Scholarship Renewal":"scholarship_management.scholarship_management.doctype.scholarship_renewal.scholarship_renewal.get_permission_query_conditions",
+# }
 
-}
+# app_include_js =["/assets/scholarship_management/js/chat20.js",
+# "/assets/scholarship_management/js/students.js",
+# "https://checkout.razorpay.com/v1/approval.js"
+# ],
 
-app_include_js =[ "/assets/scholarship_management/js/chat20.js",
-"/assets/scholarship_management/js/students.js",
-"https://checkout.razorpay.com/v1/approval.js"
-]
+# web_include_js = "/assets/scholarship_management/js/chat20.js"
 
+# fixtures = [
+#     {
+#         "doctype": "Scholarship Add-on Type",
+#         "filters": [["name", "in", [
+#             "Monthly Living Stipend",
+#             "Full Tuition Waiver"
+#         ]]]
+#     }
+# ]
 
 
 # scheduler_events = {
@@ -265,12 +274,80 @@ app_include_js =[ "/assets/scholarship_management/js/chat20.js",
 #              "scholarship_management.scholarship_management.doctype.scholarship_application.scholarship_application.create_future_scholarships"
 #         ],
 #         "0 0 1 * *": [
-#             "scholarship_management.scholarship_management.doctype.sponsor.sponsor.send_sponsor_reminders"
+#             "scholarship_management.sponsorship.doctype.sponsors.sponsors.send_sponsor_reminders"
 #         ]
 #     }
 # }
 
+permission_query_conditions = {
+    "Scholarship": "scholarship_management.scholarship_management.doctype.scholarship.scholarship.get_permission_query_conditions",
+    "Applicant Profile": "scholarship_management.scholarship_management.doctype.applicant_profile.applicant_profile.get_permission_query_conditions",
+    "Scholarship Application": "scholarship_management.scholarship_management.doctype.scholarship_application.scholarship_application.get_permission_query_conditions",
+    "Scholarship Renewal": "scholarship_management.scholarship_management.doctype.scholarship_renewal.scholarship_renewal.get_permission_query_conditions",
+}
 
+app_include_js = [
+    "/assets/scholarship_management/js/chat20.js",
+    "/assets/scholarship_management/js/students.js",
+    "https://checkout.razorpay.com/v1/approval.js"
+]
+
+web_include_js = "/assets/scholarship_management/js/chat20.js"
+
+fixtures = [
+    {
+        "doctype": "Scholarship",
+    },
+    {
+        "doctype": "Scholarship Add-on Type",      
+    },
+    {
+        "doctype": "Scholarship Add-on",      
+    },
+    {
+        "doctype": "Scholarship Settings",      
+    },
+    {
+        "doctype": "Scholarship Application",      
+    },
+    {
+        "doctype": "Applicant Profile",      
+    },
+    {
+        "doctype": "Scholarship Renewal",      
+    },
+    {
+        "doctype":"Transaction"
+    },
+    {
+        "doctype":"Sponsors"
+    },
+    {
+        "doctype":"Feedback"
+    },
+    {
+        "doctype":"User"
+    },
+    {
+        "doctype":"Role"    
+    },
+    {
+        "doctype":"Client Script"
+    },
+    {
+        "doctype":"Workspace"
+    },
+    {
+        "doctype":"Dashboard"
+    },
+    {
+        "doctype":"Print Format"
+    }
+]
+
+
+
+#hgadijfkffamsdkfnrtypuedi
 
 
 
@@ -280,12 +357,6 @@ app_include_js =[ "/assets/scholarship_management/js/chat20.js",
 #  }
 
 
-fixtures = [
-    {
-        "doctype": "Scholarship Add-on Type",
-        "filters": [["name", "in", [
-            "Monthly Living Stipend",
-            "Full Tuition Waiver"
-        ]]]
-    }
-]
+
+
+

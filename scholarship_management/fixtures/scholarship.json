@@ -1,0 +1,439 @@
+[
+ {
+  "add_on": [],
+  "caste": [
+   {
+    "caste_name": "BC",
+    "parent": "Chief Minister’s Merit Scholarships",
+    "parentfield": "caste",
+    "parenttype": "Scholarship"
+   },
+   {
+    "caste_name": "MBC",
+    "parent": "Chief Minister’s Merit Scholarships",
+    "parentfield": "caste",
+    "parenttype": "Scholarship"
+   },
+   {
+    "caste_name": "SC",
+    "parent": "Chief Minister’s Merit Scholarships",
+    "parentfield": "caste",
+    "parenttype": "Scholarship"
+   }
+  ],
+  "cgpa": 0.0,
+  "coordinator": [],
+  "created_by": "Administrator",
+  "docstatus": 0,
+  "doctype": "Scholarship",
+  "eleventh_mark": 0,
+  "end_date": "2026-02-19",
+  "income": 10000.0,
+  "is_published": 0,
+  "max_applicants_allowed": 10,
+  "modified": "2025-10-15 19:38:52.686521",
+  "name": "Chief Minister’s Merit Scholarships",
+  "name1": "Chief Minister’s Merit Scholarships",
+  "route": null,
+  "scholarship_type": "School-Level",
+  "sponsor_by": [],
+  "start_date": "2025-11-06",
+  "status": "Upcoming",
+  "tenth_mark": 420,
+  "total_amount": 10000.0,
+  "twelfth_mark": 0
+ },
+ {
+  "add_on": [],
+  "caste": [
+   {
+    "caste_name": "BC",
+    "parent": "TN Welfare Scholarship(data import)",
+    "parentfield": "caste",
+    "parenttype": "Scholarship"
+   }
+  ],
+  "cgpa": 0.0,
+  "coordinator": [],
+  "created_by": "Administrator",
+  "docstatus": 0,
+  "doctype": "Scholarship",
+  "eleventh_mark": 510,
+  "end_date": "2025-10-04",
+  "income": 0.0,
+  "is_published": 0,
+  "max_applicants_allowed": 5,
+  "modified": "2025-10-11 11:31:50.464884",
+  "name": "TN Welfare Scholarship(data import)",
+  "name1": "TN Welfare Scholarship(data import)",
+  "route": null,
+  "scholarship_type": "Undergraduate",
+  "sponsor_by": [],
+  "start_date": "2025-08-29",
+  "status": "Closed",
+  "tenth_mark": 420,
+  "total_amount": 100000.0,
+  "twelfth_mark": 500
+ },
+ {
+  "add_on": [],
+  "caste": [
+   {
+    "caste_name": "MBC",
+    "parent": "Academic Scholarship(data import)",
+    "parentfield": "caste",
+    "parenttype": "Scholarship"
+   }
+  ],
+  "cgpa": 0.0,
+  "coordinator": [],
+  "created_by": "Administrator",
+  "docstatus": 0,
+  "doctype": "Scholarship",
+  "eleventh_mark": 0,
+  "end_date": "2025-11-27",
+  "income": 10000.0,
+  "is_published": 0,
+  "max_applicants_allowed": 10,
+  "modified": "2025-10-11 11:31:52.311062",
+  "name": "Academic Scholarship(data import)",
+  "name1": "Academic Scholarship(data import)",
+  "route": null,
+  "scholarship_type": "School-Level",
+  "sponsor_by": [],
+  "start_date": "2025-08-26",
+  "status": "Active",
+  "tenth_mark": 0,
+  "total_amount": 10000.0,
+  "twelfth_mark": 0
+ },
+ {
+  "add_on": [],
+  "caste": [
+   {
+    "caste_name": "MBC",
+    "parent": "testing1(data import)",
+    "parentfield": "caste",
+    "parenttype": "Scholarship"
+   }
+  ],
+  "cgpa": 0.0,
+  "coordinator": [],
+  "created_by": "Administrator",
+  "docstatus": 0,
+  "doctype": "Scholarship",
+  "eleventh_mark": 0,
+  "end_date": "2025-10-28",
+  "income": 0.0,
+  "is_published": 1,
+  "max_applicants_allowed": 10,
+  "modified": "2025-10-14 14:27:29.596780",
+  "name": "testing1(data import)",
+  "name1": "testing1(data import)",
+  "route": "route/testing1(data import)",
+  "scholarship_type": "School-Level",
+  "sponsor_by": [],
+  "start_date": "2025-09-04",
+  "status": "Active",
+  "tenth_mark": 0,
+  "total_amount": 10000.0,
+  "twelfth_mark": 0
+ },
+ {
+  "add_on": [
+   {
+    "applicable_months": 2,
+    "name1": "Full Tuition Waiver",
+    "parent": "Merit Scholarship",
+    "parentfield": "add_on",
+    "parenttype": "Scholarship",
+    "price": 2000.0,
+    "total_price": 4000.0
+   },
+   {
+    "applicable_months": 10,
+    "name1": "Monthly Living Stipend",
+    "parent": "Merit Scholarship",
+    "parentfield": "add_on",
+    "parenttype": "Scholarship",
+    "price": 5000.0,
+    "total_price": 50000.0
+   }
+  ],
+  "caste": [
+   {
+    "caste_name": "SC",
+    "parent": "Merit Scholarship",
+    "parentfield": "caste",
+    "parenttype": "Scholarship"
+   },
+   {
+    "caste_name": "ST",
+    "parent": "Merit Scholarship",
+    "parentfield": "caste",
+    "parenttype": "Scholarship"
+   }
+  ],
+  "cgpa": 0.0,
+  "coordinator": [],
+  "created_by": "Administrator",
+  "docstatus": 0,
+  "doctype": "Scholarship",
+  "eleventh_mark": 0,
+  "end_date": "2026-02-20",
+  "income": 100000.0,
+  "is_published": 1,
+  "max_applicants_allowed": 10,
+  "modified": "2025-11-04 17:09:35.766108",
+  "name": "Merit Scholarship",
+  "name1": "Merit Scholarship",
+  "route": "route/merit_scholarship",
+  "scholarship_type": "erc76fuj3m",
+  "sponsor_by": [
+   {
+    "name1": "1",
+    "parent": "Merit Scholarship",
+    "parentfield": "sponsor_by",
+    "parenttype": "Scholarship"
+   }
+  ],
+  "start_date": "2025-10-11",
+  "status": "Active",
+  "tenth_mark": 0,
+  "total_amount": 148000.0,
+  "twelfth_mark": 0
+ },
+ {
+  "add_on": [],
+  "caste": [
+   {
+    "caste_name": "BC",
+    "parent": "TN Welfare Scholarship",
+    "parentfield": "caste",
+    "parenttype": "Scholarship"
+   },
+   {
+    "caste_name": "MBC",
+    "parent": "TN Welfare Scholarship",
+    "parentfield": "caste",
+    "parenttype": "Scholarship"
+   },
+   {
+    "caste_name": "OBC",
+    "parent": "TN Welfare Scholarship",
+    "parentfield": "caste",
+    "parenttype": "Scholarship"
+   },
+   {
+    "caste_name": "SC",
+    "parent": "TN Welfare Scholarship",
+    "parentfield": "caste",
+    "parenttype": "Scholarship"
+   }
+  ],
+  "cgpa": 0.0,
+  "coordinator": [],
+  "created_by": "Administrator",
+  "docstatus": 0,
+  "doctype": "Scholarship",
+  "eleventh_mark": 510,
+  "end_date": "2025-12-27",
+  "income": 0.0,
+  "is_published": 0,
+  "max_applicants_allowed": 5,
+  "modified": "2025-10-15 19:38:01.209498",
+  "name": "TN Welfare Scholarship",
+  "name1": "TN Welfare Scholarship",
+  "route": null,
+  "scholarship_type": "Undergraduate",
+  "sponsor_by": [],
+  "start_date": "2025-08-29",
+  "status": "Active",
+  "tenth_mark": 420,
+  "total_amount": 100000.0,
+  "twelfth_mark": 500
+ },
+ {
+  "add_on": [],
+  "caste": [
+   {
+    "caste_name": "OBC",
+    "parent": "test",
+    "parentfield": "caste",
+    "parenttype": "Scholarship"
+   }
+  ],
+  "cgpa": 0.0,
+  "coordinator": [],
+  "created_by": "Administrator",
+  "docstatus": 0,
+  "doctype": "Scholarship",
+  "eleventh_mark": 0,
+  "end_date": "2025-08-28",
+  "income": 100000.0,
+  "is_published": 0,
+  "max_applicants_allowed": 5,
+  "modified": "2025-08-30 11:30:32.809713",
+  "name": "test",
+  "name1": "test",
+  "route": null,
+  "scholarship_type": "School-Level",
+  "sponsor_by": [],
+  "start_date": "2025-08-08",
+  "status": "Closed",
+  "tenth_mark": 0,
+  "total_amount": 1000.0,
+  "twelfth_mark": 0
+ },
+ {
+  "add_on": [
+   {
+    "applicable_months": 12,
+    "name1": "Full Tuition Waiver",
+    "parent": "testing1",
+    "parentfield": "add_on",
+    "parenttype": "Scholarship",
+    "price": 2000.0,
+    "total_price": 4000.0
+   }
+  ],
+  "caste": [
+   {
+    "caste_name": "MBC",
+    "parent": "testing1",
+    "parentfield": "caste",
+    "parenttype": "Scholarship"
+   },
+   {
+    "caste_name": "OBC",
+    "parent": "testing1",
+    "parentfield": "caste",
+    "parenttype": "Scholarship"
+   },
+   {
+    "caste_name": "SC",
+    "parent": "testing1",
+    "parentfield": "caste",
+    "parenttype": "Scholarship"
+   },
+   {
+    "caste_name": "BC",
+    "parent": "testing1",
+    "parentfield": "caste",
+    "parenttype": "Scholarship"
+   }
+  ],
+  "cgpa": 0.0,
+  "coordinator": [
+   {
+    "coordinator_name": "4q9mv45b4k",
+    "email": "john@gmail.com",
+    "parent": "testing1",
+    "parentfield": "coordinator",
+    "parenttype": "Scholarship"
+   },
+   {
+    "coordinator_name": "43ecmgnpnl",
+    "email": "morgan@gmail.com",
+    "parent": "testing1",
+    "parentfield": "coordinator",
+    "parenttype": "Scholarship"
+   }
+  ],
+  "created_by": "Administrator",
+  "docstatus": 0,
+  "doctype": "Scholarship",
+  "eleventh_mark": 0,
+  "end_date": "2025-10-28",
+  "income": 0.0,
+  "is_published": 0,
+  "max_applicants_allowed": 10,
+  "modified": "2025-11-04 17:09:35.386569",
+  "name": "testing1",
+  "name1": "testing1",
+  "route": null,
+  "scholarship_type": "emqs9r4nec",
+  "sponsor_by": [
+   {
+    "name1": "1",
+    "parent": "testing1",
+    "parentfield": "sponsor_by",
+    "parenttype": "Scholarship"
+   },
+   {
+    "name1": "2",
+    "parent": "testing1",
+    "parentfield": "sponsor_by",
+    "parenttype": "Scholarship"
+   }
+  ],
+  "start_date": "2025-09-04",
+  "status": "Active",
+  "tenth_mark": 152,
+  "total_amount": 184000.0,
+  "twelfth_mark": 0
+ },
+ {
+  "add_on": [
+   {
+    "applicable_months": 2,
+    "name1": "Full Tuition Waiver",
+    "parent": "Academic Scholarship",
+    "parentfield": "add_on",
+    "parenttype": "Scholarship",
+    "price": 2000.0,
+    "total_price": 4000.0
+   },
+   {
+    "applicable_months": 10,
+    "name1": "Monthly Living Stipend",
+    "parent": "Academic Scholarship",
+    "parentfield": "add_on",
+    "parenttype": "Scholarship",
+    "price": 5000.0,
+    "total_price": 50000.0
+   }
+  ],
+  "caste": [
+   {
+    "caste_name": "MBC",
+    "parent": "Academic Scholarship",
+    "parentfield": "caste",
+    "parenttype": "Scholarship"
+   },
+   {
+    "caste_name": "OBC",
+    "parent": "Academic Scholarship",
+    "parentfield": "caste",
+    "parenttype": "Scholarship"
+   },
+   {
+    "caste_name": "SC",
+    "parent": "Academic Scholarship",
+    "parentfield": "caste",
+    "parenttype": "Scholarship"
+   }
+  ],
+  "cgpa": 0.0,
+  "coordinator": [],
+  "created_by": "Administrator",
+  "docstatus": 0,
+  "doctype": "Scholarship",
+  "eleventh_mark": 0,
+  "end_date": "2025-11-27",
+  "income": 10000.0,
+  "is_published": 1,
+  "max_applicants_allowed": 10,
+  "modified": "2025-11-04 17:09:35.739138",
+  "name": "Academic Scholarship",
+  "name1": "Academic Scholarship",
+  "route": "route/academic_scholarship",
+  "scholarship_type": "School-Level",
+  "sponsor_by": [],
+  "start_date": "2025-08-26",
+  "status": "Active",
+  "tenth_mark": 0,
+  "total_amount": 58000.0,
+  "twelfth_mark": 0
+ }
+]

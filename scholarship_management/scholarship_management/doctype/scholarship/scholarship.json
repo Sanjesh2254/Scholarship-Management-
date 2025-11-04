@@ -8,6 +8,12 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "section_break_ntpa",
+  "column_break_fers",
+  "total_applicants_applied",
+  "column_break_onky",
+  "total_applicant",
+  "section_break_fphg",
   "scholarship_type",
   "start_date",
   "end_date",
@@ -41,7 +47,6 @@
    "fieldname": "name1",
    "fieldtype": "Data",
    "in_global_search": 1,
-   "in_standard_filter": 1,
    "label": "Scholarship Name",
    "reqd": 1,
    "unique": 1
@@ -191,12 +196,39 @@
    "fieldname": "sponsor_by",
    "fieldtype": "Table MultiSelect",
    "label": "Sponsor By",
-   "options": "Sponsor Child"
+   "options": "Sponsors Child"
   },
   {
    "fieldname": "sponsorship_section",
    "fieldtype": "Section Break",
    "label": "Sponsorship"
+  },
+  {
+   "fieldname": "section_break_ntpa",
+   "fieldtype": "Section Break",
+   "hide_border": 1
+  },
+  {
+   "fieldname": "column_break_fers",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_onky",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_applicant",
+   "fieldtype": "HTML",
+   "label": "Total Applicant"
+  },
+  {
+   "fieldname": "section_break_fphg",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "total_applicants_applied",
+   "fieldtype": "HTML",
+   "label": "Total Applicants Applied"
   }
  ],
  "grid_page_length": 50,
@@ -209,7 +241,7 @@
    "link_fieldname": "scholarship_name"
   }
  ],
- "modified": "2025-10-24 16:15:45.828135",
+ "modified": "2025-11-03 16:16:22.641477",
  "modified_by": "Administrator",
  "module": "Scholarship Management",
  "name": "Scholarship",
@@ -254,7 +286,7 @@
    "title": "Upcoming"
   },
   {
-   "color": "Red",
+   "color": "Gray",
    "title": "Closed"
   }
  ],

@@ -1,17 +1,25 @@
 {
- "actions": [],
+ "actions": [
+  {
+   "action": "Caste Percentage",
+   "action_type": "Route",
+   "label": "suma"
+  }
+ ],
  "allow_rename": 1,
  "autoname": "field:full_name",
  "creation": "2025-09-15 12:37:08.196610",
+ "default_view": "List",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "details_tab",
   "name1",
-  "last_name",
   "full_name",
-  "currency",
   "total_amount",
+  "column_break_jqpo",
+  "last_name",
+  "currency",
   "tab_2_tab",
   "name3"
  ],
@@ -61,12 +69,17 @@
    "fieldtype": "Currency",
    "label": "Total Amount",
    "options": "currency"
+  },
+  {
+   "fieldname": "column_break_jqpo",
+   "fieldtype": "Column Break"
   }
  ],
  "grid_page_length": 50,
+ "icon": "file-text",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-11 16:24:33.076445",
+ "modified": "2025-10-31 17:20:46.594615",
  "modified_by": "Administrator",
  "module": "Scholarship Management",
  "name": "Sample",
@@ -87,7 +100,10 @@
   }
  ],
  "row_format": "Dynamic",
+ "search_fields": "total_amount, currency",
+ "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "name1"
 }

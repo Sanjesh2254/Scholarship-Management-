@@ -1,0 +1,111 @@
+[
+ {
+  "cards": [
+   {
+    "card": "Total Scholarship",
+    "parent": "Admin",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Application Count",
+    "parent": "Admin",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Scholarship Renewal",
+    "parent": "Admin",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Total Transaction Amount",
+    "parent": "Admin",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   }
+  ],
+  "chart_options": null,
+  "charts": [
+   {
+    "chart": "Transaction",
+    "parent": "Admin",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Half"
+   },
+   {
+    "chart": "Scholarship Application",
+    "parent": "Admin",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Half"
+   },
+   {
+    "chart": "Scholarship Renewal",
+    "parent": "Admin",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Half"
+   },
+   {
+    "chart": "Total User",
+    "parent": "Admin",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Half"
+   }
+  ],
+  "dashboard_name": "Admin",
+  "docstatus": 0,
+  "doctype": "Dashboard",
+  "is_default": 0,
+  "is_standard": 1,
+  "modified": "2025-08-26 15:52:37.917855",
+  "module": "Scholarship Management",
+  "name": "Admin"
+ },
+ {
+  "cards": [],
+  "chart_options": null,
+  "charts": [
+   {
+    "chart": null,
+    "parent": "My Dashboard",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Half"
+   }
+  ],
+  "dashboard_name": "My Dashboard",
+  "docstatus": 0,
+  "doctype": "Dashboard",
+  "is_default": 0,
+  "is_standard": 1,
+  "modified": "2025-08-26 12:22:37.059486",
+  "module": "Scholarship Management",
+  "name": "My Dashboard"
+ },
+ {
+  "cards": [],
+  "chart_options": null,
+  "charts": [
+   {
+    "chart": "sample",
+    "parent": "sample",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Half"
+   }
+  ],
+  "dashboard_name": "sample",
+  "docstatus": 0,
+  "doctype": "Dashboard",
+  "is_default": 0,
+  "is_standard": 0,
+  "modified": "2025-10-07 13:05:00.920736",
+  "module": null,
+  "name": "sample"
+ }
+]

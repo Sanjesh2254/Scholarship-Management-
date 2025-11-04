@@ -24,4 +24,3 @@ class ScholarshipAddonType(Document):
 					frappe.db.set_value("Scholarship", s.name, "total_amount", new_total)
 				
 
-			

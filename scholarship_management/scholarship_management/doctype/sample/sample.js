@@ -16,11 +16,25 @@ frappe.ui.form.on('Sample', {
                 console.log("total_amount field not found");
             }
         }
+
+        frappe.call({
+            method: 'scholarship_management.scholarship_management.doctype.sample.sample.get_full_name',
+            args: {
+                last_name: frm.doc.name1
+            },
+            callback: function (r) {
+                if (r.message) {
+                    frappe.msgprint(__('Full Name: ' + r.message));
+                }
+            }
+        });
+
     },
     currency(frm) {
         if (frm.doc.currency && frm.fields_dict.total_amount) {
             frm.fields_dict.total_amount.set_currency(frm.doc.currency);
         }
-    }
+    },
+
 });
 
