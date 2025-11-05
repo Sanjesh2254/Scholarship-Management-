@@ -55,7 +55,7 @@ d.show();
 
 }, '  + Applicant Count');
         
-          frm.set_query("name1", "add_on", function(doc, cdt, cdn) {
+        frm.set_query("name1", "add_on", function(doc, cdt, cdn) {
                 let row = locals[cdt][cdn];
 
                 let selected = (doc.add_on || [])
@@ -97,7 +97,7 @@ d.show();
                     method: "scholarship_management.scholarship_management.doctype.scholarship.scholarship.caste_allocated",
                     args: { total_applications: frm.doc.max_applicants_allowed,
                         scholarship_name: frm.doc.name
-                     },   // pass total applications/quota
+                     }, // pass total applications/quota
                     callback: function (alloc) {
                         if (alloc.message === true) {
                             frm.dashboard.set_headline(__('Your caste quota is already filled. You cannot apply.'));

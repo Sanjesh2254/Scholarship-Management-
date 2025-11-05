@@ -22,5 +22,5 @@ class ScholarshipAddonType(Document):
 				if addon_row.name1 == self.add_on_name:
 					new_total = ((scholarship_doc.total_amount or 0)-old_amount) + amount
 					frappe.db.set_value("Scholarship", s.name, "total_amount", new_total)
-				
+
 

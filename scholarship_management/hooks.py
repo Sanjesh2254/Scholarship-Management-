@@ -291,7 +291,7 @@ app_include_js = [
     "/assets/scholarship_management/js/students.js",
     "https://checkout.razorpay.com/v1/approval.js"
 ]
-
+    
 web_include_js = "/assets/scholarship_management/js/chat20.js"
 
 fixtures = [
